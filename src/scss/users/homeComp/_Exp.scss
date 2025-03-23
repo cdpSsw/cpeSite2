@@ -1,0 +1,19 @@
+@use "../../var.scss";
+
+.exp-container {
+  @include var.center-content;
+  align-items: start;
+  width: 100%;
+  height: 200vh;
+
+  .text-box {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 10vw;
+    background: red;
+    white-space: nowrap; /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+  }
+}

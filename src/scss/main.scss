@@ -1,0 +1,36 @@
+// styles
+@use './var.scss';
+
+// users
+// ... components
+@use './users/components/Nav';
+@use './users/components/PagesHeader';
+
+// ...  home-pages
+@use './users/homeComp/Header';
+@use './users/homeComp/Activities';
+@use './users/homeComp/Highlight';
+@use './users/homeComp/Course';
+@use './users/homeComp/Team';
+@use './users/homeComp/CareerP';
+@use './users/homeComp/Faqs';
+
+// ... pages
+@use './users/pages/Contact';
+
+// -----------------------------------------------------------------------------
+
+// admin
+@use './admin/amain';
+
+// ... components
+@use './admin/components/aHeader';
+@use './admin/components/modalAE_Activities';
+@use './admin/components/modalAE_CareerP';
+@use './admin/components/modalAE_Faqs';
+@use './admin/components/modalDel';
+
+// ... pages
+@use './admin/pages/afaqs';
+@use './admin/pages/ashowcase';
+@use './admin/pages/content_act_carp';

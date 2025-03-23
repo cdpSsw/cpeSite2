@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: react-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    # volumes:
+    #   - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    volumes:
+      - .:/app  # แมปโค้ดทั้งหมดเข้าไป
+      - /app/node_modules  # ป้องกันการทับ node_modules
+    command: ["npm", "run", "dev"]
+    restart: unless-stopped

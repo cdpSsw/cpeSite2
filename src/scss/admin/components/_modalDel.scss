@@ -1,0 +1,58 @@
+@use '../../var';
+
+.modal-delete-container {
+  @include var.center-content;
+  flex-direction: column;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+
+  .del-icon {
+    ion-icon {
+      font-size: 32px;
+      padding: 16px;
+      color: var.$red;
+      background: rgb(255, 225, 225);
+      border-radius: 50%;
+    }
+  }
+
+  .title {
+    color: var.$crims_red;
+    font-weight: 900;
+  }
+
+  .detail {
+    color: var.$black;
+    margin: 8px 0 16px 0;
+
+    .delete-topic{
+      color: var.$crims_red;
+    }
+  }
+
+  .md-btn-container {
+    button {
+      padding: 6px 18px;
+      margin: 0 6px;
+      color: var.$black;
+      background: none;
+      border-radius: 32px;
+      border: 1px solid var.$black;
+      transition: all 0.4s ease-out;
+    }
+
+    button:nth-child(1):hover {
+      color: var.$white;
+      background: var.$black;
+    }
+
+    button:nth-child(2) {
+      color: var.$white;
+      background: var.$crims_red;
+      border: 1px solid var.$crims_red;
+
+      &:hover {
+        box-shadow: 0 0 8px var.$crims_red;
+      }
+    }
+  }
+}

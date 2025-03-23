@@ -1,0 +1,81 @@
+@use '../var.scss';
+
+.amain-container{
+    
+    .sidebar-container{
+        @include var.center-content;
+        flex-direction: column;
+        justify-content: space-between;
+        background: var.$black;
+        width: 80px;
+        max-width: 80px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+
+        .logo{ width: 50px; }
+        .nav-list{
+            // background: yellow; 
+            @include var.center-content;
+            flex-direction: column;
+            list-style: none;
+            margin-top: 16px;
+            padding: 0;
+
+            .nav-link{
+                // background: red;
+                position: relative;
+                color: var.$white;
+                font-size: 22px;
+                margin: 8px 0;
+                transition: all .3s ease-out;
+
+                ion-icon{
+                    margin-top: 8px;
+                }
+
+                &::after {
+                    content: attr(data-text);
+                    position: absolute;
+                    left: 0;
+                    bottom: -15px;
+                    padding: 3px 8px;
+                    font-size: 10px;
+                    background: #00000066;
+                    z-index: 1;
+                    border-radius: 32px;
+                    white-space: nowrap;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                }
+            
+                &:hover::after {
+                    opacity: 1;
+                }
+            }
+
+            .nav-link.active{
+                background: var.$blue;
+                padding: 8px 16px;
+                border-radius: 50%;
+            }
+        }
+
+        .nav-bottom{
+            .line-hr{
+                width: 100%;
+                height: 1px;
+                margin-bottom: 16px;
+                background: var.$dim_white;
+            }
+        }
+    }
+
+    .content-container{
+        // background: yellow;
+        // height: 500vh;   
+        // padding: 3vw;
+        margin-left: 80px;
+    }
+}

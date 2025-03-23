@@ -1,0 +1,54 @@
+@use '../../var';
+
+// modal-*add/edit-activities
+.form-ae-activities{
+    padding: 16px;
+    form{
+        text-align: start;
+        padding: 16px;
+    
+        .input-box{
+            input:focus,
+            textarea:focus{
+                box-shadow: none;
+            }
+        }
+
+        .preview-container{
+            img{
+                width: 100%;
+            }
+        }
+    }
+
+    .btn-container{
+        button{
+            padding: 6px 24px;
+            color: var.$white;
+            background: var.$blue;
+            border: 1px solid var.$blue;
+            border-radius: 32px;
+            transition: all .3s ease-out;
+        }
+
+        button:nth-child(1){
+            margin-right: 8px;
+            color: var.$black;
+            background: var.$white;
+            border: 1px solid var.$black;
+
+            &:hover{
+                color: var.$white;
+                background: var.$black;
+                border: 1px solid var.$black;
+                box-shadow: 0 0 6px var.$black;
+            }
+        }
+
+        button:nth-child(2){
+            &:hover{
+                box-shadow: 0 0 6px var.$blue;
+            }
+        }
+    }
+}

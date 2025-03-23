@@ -1,0 +1,184 @@
+@use "../../var.scss";
+
+.nav-container {
+  .for-desktop-size {
+    @include var.center-content;
+    justify-content: space-between;
+    color: var.$white;
+    background: var.$black;
+    padding: 0 3vw;
+
+    .left-side {
+      @include var.center-content;
+      .emblem-container {
+        .emblem {
+          width: 50px;
+          margin-right: 8px;
+        }
+      }
+
+      .nav-list {
+        list-style: none;
+        @include var.center-content;
+        margin: 0;
+        padding: 0;
+
+        li > .nav-link {
+          position: relative;
+          font-size: 16px;
+          margin: 0 8px;
+          transition: all 0.3s ease-out;
+
+          &::after {
+            position: absolute;
+            content: "";
+            width: 0%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background: red;
+            transition: all 0.3s ease-out;
+          }
+
+          &:hover {
+            // color: var.$blue;
+
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .right-side.btn-container {
+      .btn {
+        font-size: 16px;
+        color: var.$white;
+        background: var.$grey;
+        border: 1px solid var.$grey;
+        border-radius: 4px;
+        padding: 3px 16px;
+        transition: all 0.3s ease-out;
+      }
+
+      .btn-SignIn:nth-child(1):hover,
+      .btn-SignUp:nth-child(2) {
+        background: var.$blue;
+        border: 1px solid var.$blue;
+        margin-left: 8px;
+
+        &:hover {
+          box-shadow: 0 0 8px var.$blue;
+        }
+      }
+    }
+  }
+
+  .for-mobile-size {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .for-desktop-size {
+    display: none !important;
+  }
+
+  .for-mobile-size {
+    display: flex !important;
+    background: var.$black;
+
+    .navbar {
+      width: 100%;
+
+      .nav {
+        padding: 0 3vw;
+
+        .nav-box {
+          width: 100%;
+          display: flex !important;
+          justify-content: space-between !important;
+
+          .navbar-brand > img {
+            width: 50px;
+          }
+
+          .icon-btn > ion-icon {
+            color: var.$white;
+            font-size: 32px;
+          }
+        }
+      }
+
+      .linkList {
+        .nav-list {
+          padding: 0 3vw;
+          list-style: none;
+          margin: 0;
+
+          .nav-item {
+            margin: 16px 0;
+            .nav-link {
+              display: inline;
+              color: var.$white;
+              position: relative;
+              font-size: 16px;
+              transition: all 0.3s ease-out;
+              padding: 0;
+
+              &::after {
+                position: absolute;
+                content: "";
+                width: 0%;
+                height: 1px;
+                bottom: 0;
+                left: 0;
+                background: red;
+                transition: all 0.3s ease-out;
+              }
+
+              &:hover {
+                // font-size: 24px;
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+
+        .btn-container {
+          padding: 3vw;
+          padding-top: 0;
+
+          hr {
+            width: 50%;
+            color: var.$white;
+          }
+
+          .btn {
+            font-size: 16px;
+            color: var.$white;
+            background: var.$grey;
+            border: 1px solid var.$grey;
+            border-radius: 4px;
+            padding: 3px 16px;
+            transition: all 0.3s ease-out;
+          }
+
+          .btn-SignIn:nth-child(2):hover,
+          .btn-SignUp:nth-child(3) {
+            background: var.$blue;
+            border: 1px solid var.$blue;
+            margin-left: 8px;
+
+            &:hover {
+              box-shadow: 0 0 8px var.$blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}

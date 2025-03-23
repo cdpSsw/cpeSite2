@@ -1,0 +1,162 @@
+@use '../../var.scss';
+
+.course-container{
+    width: 100%;
+    min-height: 120vh;
+    color: var.$white;
+    background: var.$black;
+    overflow: hidden;
+    padding: 8vw 0;
+    
+    .text-top-container{
+        @include var.center-content;
+        padding: 3vw 8vw;
+        justify-content: space-between;
+        text-align: start;
+        overflow: hidden;
+        
+        .topic-container{
+            // background: darkblue;
+
+            .main_topic{
+                max-width: 590px;
+                // background: red;
+            }
+        }
+
+        .sub_topic{
+            display: flex;
+            height: 100%;
+            font-size: 14px;
+            font-weight: 300;
+            // background: darkblue;
+            align-items: flex-end;
+            justify-content: flex-end;
+            color: var.$dim_white;
+        }
+    }
+
+    .content-container{
+        position: relative;
+
+        svg { 
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            margin-top: -12vw;
+        }
+                 
+        .line-wave2{ display: none }
+
+        .content-box-outter{
+            @include var.center-content;
+            position: absolute;
+            margin-top: 52px;
+            padding: 0 8vw;
+            // background: red;
+
+            .content-box-inner{
+                cursor: pointer;
+                // margin: 8px;
+                height: 260px;
+                text-align: start;
+                border-radius: 24px;
+                background: none;
+                backdrop-filter: blur(50px);
+                border: 1px solid var.$white;
+                padding: 48px 24px;
+                transition: all .3s ease-out;
+
+                // &:hover{
+                //     transform: translateY(-16px)
+                // }
+
+                img{ width: 32px; }
+
+                .text-topic{
+                    display: flex;
+                    align-items: center;
+                    // background: red;
+
+                    .topic{ 
+                        font-size: 18px; 
+                        margin: 0 16px;
+                        margin-left: 16px;
+                    }
+                }
+
+                .desc{
+                    // background: darkblue;
+                    margin-top: 16px;
+                    font-size: 1vw;
+                    font-weight: 200;
+                    color: var.$dim_white;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .course-container{
+
+        .content-container{
+            svg{
+                margin-top: -80px !important;
+                width: 100% !important;
+            }
+            .content-box-inner{
+                height: 200px !important;
+                padding: 24px !important;
+        
+                .topic{ font-size: 14px !important; }
+                .desc{ font-size: 8px !important; }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .course-container{
+        height: 165vh !important;
+
+        .text-top-container{
+            justify-content: center !important;
+            text-align: center !important;
+
+            .main_topic{
+                // max-width: 460px !important;
+                font-size: 5vw !important;
+            }
+        }
+
+        .content-container{
+            margin-top: -50px !important;
+
+            .line-wave1{ display: none !important; }
+            .line-wave2{
+                display: block !important;
+                margin-top: 150px !important;
+                // margin-left: 100px !important;
+                transform: rotate(-100deg) !important;
+                transform: scale(1.2) !important;
+                width: 100vw !important;
+            }
+
+            .content-box-outter{
+                // background: darkblue !important;
+                
+                .content-box-inner{
+                    height: auto !important;
+                    margin: 16px 0 !important;
+                    
+                    .desc{ 
+                        font-size: 14px !important; 
+                        // background: red !important;
+                    }
+                }
+            }
+        }
+    }
+}

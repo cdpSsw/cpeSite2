@@ -1,0 +1,163 @@
+@use "../../var.scss";
+
+.team-container {
+  @include var.center-content;
+  width: 100%;
+  height: 100vh;
+  background: var.$black;
+  overflow: hidden;
+
+  .team-box-outer {
+    // background: darkblue;
+
+    .flip {
+      position: relative;
+
+      > .front,
+      > .back {
+        display: block;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition-duration: 0.5s;
+        transition-property: transform, opacity;
+        // transition: all .6s ease-out;
+      }
+      > .front {
+        transform: rotateY(0deg);
+
+        img{
+            width: 23vw;
+            height: 35vw;
+            object-fit: cover;
+            object-position: top;
+        }
+      }
+      > .back {
+        position: absolute;
+        opacity: 0;
+        top: 0px;
+        width: 23.8vw;
+        height: 35vw;
+        transform: rotateY(-180deg);
+        color: var.$black;
+        background: var.$white;
+        text-align: start;
+        padding: 2vw;
+        overflow: hidden;
+        
+        .name{ font-size: 2vw; }
+        .position{ font-size: 1.5vw;}
+
+        .detail-container{
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            text-align: start;
+            width: 100%;
+
+            ion-icon{ 
+                font-size: 2vw;
+                margin-right: 16px;
+            }
+
+            .detail{
+                font-size: 1.2vw;
+            }
+        }
+
+        .detail-container.location{
+            ion-icon{ font-size: 32px; }
+        }
+
+        .detail-container.img{
+            width: 8vw;
+            height: 8vw;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top;
+                filter: grayscale(100); 
+          }
+        }
+      }
+
+      &:hover {
+        > .front {
+          transform: rotateY(180deg);
+        }
+        > .back {
+          opacity: 1;
+          transform: rotateY(0deg);
+        }
+      }
+    }
+
+    .text-container{
+        margin-top: 16px;
+
+        .name,
+        .position{
+            color: var.$white;
+            text-align: end;
+        }
+
+        .name{ font-size: 2vw; }
+        .position{ font-size: 1.5vw; }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+    .detail-container.img{ display: none !important; }
+}
+
+@media screen and (max-width: 767px) {
+    .team-container{
+        // background: red !important;
+        height: 280vh !important;
+        padding: 200px 0;
+
+        .team-box-outer{
+            width: 320px !important;
+            height: 100% !important;
+            // background: darkblue !important;
+
+            .flip{
+                .front{
+                    // background: saddlebrown;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .back{
+                    width: 299px !important;
+                    height: 450px !important;
+                    padding: 24px !important;
+
+                    .name{ font-size: 32px !important; }
+                    .position{ font-size: 22px !important; }
+                    
+                    .detail-container{
+                        ion-icon{ font-size: 20px !important; }
+                        
+                        .detail{
+                            font-size: 16px !important;
+                        }
+                    }
+
+                    .detail-container.location{
+                        ion-icon{ font-size: 30px !important; }
+                    }
+                }
+            }
+        }
+
+        .text-container{
+            .name{ font-size: 32px !important; }
+            .position{ font-size: 20px !important; }
+        }
+    }
+}

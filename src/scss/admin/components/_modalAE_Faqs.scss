@@ -1,0 +1,67 @@
+@use '../../var';
+
+.form-ae-faqs{
+    @include var.center-content;
+    flex-direction: column;
+    padding: 24px;
+    
+    .form-topic{
+        margin: 0;
+    }
+
+    hr{
+        color: var.$black;
+        width: 50%;
+    }
+
+    form{
+        width: 100%;
+        text-align: start;
+
+        input:focus,
+        textarea:focus{
+            box-shadow: none;
+        }
+    }
+
+    .btn-container{
+        button{
+            margin-top: 16px;
+            padding: 6px 24px;
+            color: var.$white;
+            background: var.$blue;
+            border: 1px solid var.$blue;
+            border-radius: 32px;
+            transition: all .3s ease-out;
+        }
+
+        button:nth-child(1){
+            margin-right: 8px;
+            color: var.$black;
+            background: var.$white;
+            border: 1px solid var.$black;
+
+            &:hover{
+                color: var.$white;
+                background: var.$black;
+                border: 1px solid var.$black;
+                box-shadow: 0 0 6px var.$black;
+            }
+        }
+
+        button:nth-child(2){
+            &:hover{
+                box-shadow: 0 0 6px var.$blue;
+            }
+        }
+
+        button:disabled{
+            background: none;
+            box-shadow: none;
+            color: var.$dim_white;
+            border: 1px solid var.$dim_white;
+
+            &:hover{ box-shadow: none; }
+        }
+    }
+}

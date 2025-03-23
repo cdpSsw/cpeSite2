@@ -1,0 +1,32 @@
+@use "../../var.scss";
+
+.p-header-container {
+  @include var.center-content;
+  flex-direction: column;
+  width: 100%;
+  height: 25vh;
+  color: var.$white;
+  background: var.$black;
+
+  .main-title {
+    font-size: 64px;
+    margin: 0;
+  }
+  .sub-title {
+    font-size: 20px;
+    span {
+      color: var.$blue;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .p-header-container {
+    .main-title {
+      font-size: 40px !important;
+    }
+    .sub-title {
+      font-size: 14px !important;
+    }
+  }
+}

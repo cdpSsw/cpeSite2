@@ -1,0 +1,38 @@
+@use '../../var.scss';
+
+.header-container{
+    @include var.center-content;
+    width: 100%;
+    height: 100vh;
+    background: var.$black;
+    overflow: hidden;
+
+    .header-content{
+        // background: red;
+        z-index: 1;
+        margin-top: -150px;
+
+        .text-container{
+            color: var.$white;
+            
+            .titleTH{ font-size: 2vw; }
+            .titleEN{ 
+                font-size: 9vw; 
+                font-weight: 700;
+                line-height: 7vw;
+            }
+        }
+    }
+    #lights {
+        width: 100%;
+        height: 90vh;
+        overflow: hidden;
+        position: absolute;
+    }
+    
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+  
