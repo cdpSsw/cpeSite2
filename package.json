@@ -1,4 +1,5 @@
 {
+  "homepage": "https://github.com/cdpSsw/cpeSite2",
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
@@ -7,12 +8,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "axios": "^1.8.1",
     "framer-motion": "^12.5.0",
+    "gh-pages": "^6.3.0",
     "gsap": "^3.12.7",
     "ogl": "^1.0.11",
     "postprocessing": "^6.37.1",
