@@ -15,7 +15,7 @@
     position: relative;
     width: 100%;
 
-    .text-top-container{
+    .text-top-container {
       width: 100%;
       text-align: start;
       margin-bottom: 4vw;
@@ -23,18 +23,18 @@
       // background: red;
 
       .topic,
-      .desc{
+      .desc {
         margin: 0;
         padding: 0;
         color: var.$white;
       }
 
-      .topic{
+      .topic {
         font-size: 64px;
         margin-bottom: -8px;
       }
 
-      .desc{
+      .desc {
         font-size: 16px;
         line-height: 24px;
         width: 320px;
@@ -144,7 +144,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* ป้องกันการใช้ grayscale หรือ scale ที่ภาพใน overlay */
 .original-img {
   filter: none !important;
   transform: none !important;
@@ -155,55 +154,74 @@
 }
 
 @media screen and (max-width: 848px) {
-  .content-box {
-    display: none !important;
-  }
-  .swiper {
-    display: flex !important;
+  .activities-container {
+    height: auto !important;
+    padding: 6vw 0 !important;
+    
+    .content-box {
+      display: none !important;
+    }
 
-    .swiper-slide {
-      img {
-        width: 320px !important;
-        height: 320px !important;
-        object-fit: cover;
-        object-position: top;
-        scale: 1 !important;
-        border-radius: 16px;
-        filter: grayscale(0) !important;
-        transform: none !important;
-      }
+    .swiper {
+      display: flex !important;
 
-      .text-container {
-        color: var.$white;
-        margin-top: 32px;
-        margin-bottom: 16px;
-        overflow: hidden;
-        opacity: 1 !important;
+      .swiper-slide {
+        img {
+          width: 320px !important;
+          height: 320px !important;
+          object-fit: cover;
+          object-position: top;
+          scale: 1 !important;
+          border-radius: 16px;
+          filter: grayscale(0) !important;
+          transform: none !important;
+        }
 
-        .topic-container,
-        .desc-container {
+        .text-container {
+          color: var.$white;
+          margin-top: 32px;
+          margin-bottom: 16px;
           overflow: hidden;
-        }
+          opacity: 1 !important;
 
-        .topic {
-          font-size: 32px;
-        }
-        .desc {
-          font-size: 24px;
-          color: var.$grey;
+          .topic-container,
+          .desc-container {
+            overflow: hidden;
+          }
+
+          .topic {
+            font-size: 32px;
+          }
+          .desc {
+            font-size: 24px;
+            color: var.$grey;
+          }
         }
       }
-    }
 
-    .swiper-pagination-bullet {
-      background: var.$blue;
-      transition: all 0.3s ease-out;
-    }
+      .swiper-pagination-bullet {
+        background: var.$blue;
+        transition: all 0.3s ease-out;
+      }
 
-    .swiper-pagination-bullet-active {
-      width: 30px;
-      background: linear-gradient(90deg, var.$blue, var.$purple);
-      border-radius: 3px;
+      .swiper-pagination-bullet-active {
+        width: 30px;
+        background: linear-gradient(90deg, var.$blue, var.$purple);
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .activities-container{
+    .swiper{
+      .swiper-slide{
+        img{
+          width: 250px !important;
+          height: 250px !important;
+        }
+      }
     }
   }
 }

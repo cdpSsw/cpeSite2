@@ -11,7 +11,7 @@ const Team = () => {
   const conRef = useRef(null);
   const imgRefs = useRef([]);
 
-  const team_info = [
+  const team_detail = [
     {
       img: j,
       fname: "CHIROT",
@@ -44,75 +44,41 @@ const Team = () => {
     },
   ];
 
-  useEffect(() => {
-    imgRefs.current.forEach((img) => {
-      gsap.fromTo(
-        img,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: conRef.current,
-            start: "top top",
-            end: "top 50%",
-            // markers: true,
-            scrub: 1
-          }
-        }
-      );
-    });
-  }, []);
+  const teams_info = [
+    {
+      topic: "Our Team",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable",
+    },
+  ];
 
   return (
     <main ref={conRef} className="team-container">
-      <article className="team-box-outer row">
-        {team_info.map((info, idx) => (
-          <section 
-            ref={(el) => (imgRefs.current[idx] = el)}
-            key={idx} 
-            className="flip col-md-4"
-          >
-            <section key={idx} className="team-card front">
-              <img
-                src={info.img}
-                alt={info.fname}
-              />
-            </section>
-            <section className="team-card back">
-              <h1 className="name">{info.fname}</h1>
-              <h1 className="name">{info.lname}</h1>
-              <h3 className="position">{info.position}</h3>
-              <hr />
-              <span className="detail-container">
-                <ion-icon name="call"></ion-icon>
-                <p className="detail">{info.tel}</p>
-              </span>
-              <span className="detail-container">
-                <ion-icon name="mail"></ion-icon>
-                <p className="detail">{info.email}</p>
-              </span>
-              <span className="detail-container location">
-                <ion-icon name="navigate-circle"></ion-icon>
-                <p className="detail">{info.location}</p>
-              </span>
-              <span className="detail-container">
-                <ion-icon name="calendar-clear"></ion-icon>
-                <p className="detail">{info.date_time}</p>
-              </span>
-              <span className="detail-container img">
-                <img src={info.img} alt={info.fname} />
-              </span>
-            </section>
-
-            <section className="text-container">
-              <h1 className="name fname">{info.fname}</h1>
-              <h1 className="name lname">{info.lname}</h1>
-              <p className="position">{info.position}</p>
-            </section>
+        {teams_info.map((info, idx) => (
+          <section key={idx} className="text-top-container">
+            <h1 className="topic">{info.topic}</h1>
+            <p className="desc">{info.description}</p>
           </section>
         ))}
-      </article>
+
+        <article className="content-container row">
+          {team_detail.map((detail, idx) => (
+            <section
+              ref={(el) => (imgRefs.current[idx] = el)}
+              key={idx}
+              className="col-md-3"
+            >
+              <section className="content-box">
+                <img src={detail.img} alt={detail.fname} />
+                <section className="text-bottom-container">
+                  <h1 className="name fname">{detail.fname}</h1>
+                  <h1 className="name lname">{detail.lname}</h1>
+                  <p className="position">{detail.position}</p>
+                </section>
+              </section>
+            </section>
+          ))}
+        </article>
     </main>
   );
 };

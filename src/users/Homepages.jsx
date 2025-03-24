@@ -54,24 +54,19 @@ const Homepages = () => {
   // }, []);
 
   return (
-    <>
+    <main className="homp-container">
       <Nav />
       <Header />
 
-      <section ref={activityRef} className="activity-container-scroll">
-        <Activities />
-      </section>
-
-      <section className="highlight-container-scroll">
-        <Highlight />
-      </section>
+      <Activities />
+      <Highlight />
 
       <Course />
-      <Showcase /> 
+      {/* <Showcase />  */}
       <Team />
       <CareerP />
       <Faqs />
-    </>
+    </main>
   );
 };
 

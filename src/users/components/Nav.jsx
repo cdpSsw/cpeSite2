@@ -6,7 +6,7 @@ import emblem from "/public/emblem/emblem_white.png";
 const Nav = () => {
   const linkList = [
     { name: "home", path: "/" },
-    { name: "activities", path: "" },
+    { name: "activities", path: "/Activities" },
     { name: "coop", path: "" },
     { name: "cpeclub", path: "" },
     { name: "contact", path: "/Contact" },

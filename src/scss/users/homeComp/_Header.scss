@@ -118,3 +118,55 @@
     height: 100%;
   }
 }
+
+@media screen and (max-width: 770px) {
+  .header-container{
+    .header-content{
+      .text-container{
+
+        .title-TH{ font-size: 24px !important; }
+        .title-EN{ 
+          font-size: 64px !important; 
+          line-height: 48px !important;
+        }
+
+        .title:nth-child(2){
+          .assets-container,
+          .assets-1,
+          .assets-2{
+            display: none !important; 
+          } 
+        }
+
+        .desc-container{
+          .desc{ font-size: 18px !important; }
+        }
+      }
+      .btn-container{
+        .apply-to-study-btn{ 
+          font-size: 16px !important;
+        }
+        .scholarship-btn{ display: none !important; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 405px) {
+  .header-container{
+    .header-content{
+      .text-container{
+        
+        .title-TH{ font-size: 18px !important; }
+        .title-EN{ 
+          font-size: 52px !important; 
+          line-height: 40px !important;
+        }
+
+        .desc-container{
+          .desc{ font-size: 18px !important; }
+        }
+      }
+    }
+  }
+}
