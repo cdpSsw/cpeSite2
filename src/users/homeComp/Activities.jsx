@@ -4,9 +4,12 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from "swiper/modules";
+
 import "swiper/scss";
 import "swiper/scss/pagination";
+
+import CircularText from "../components/CircularText";
 
 import ev1 from "/public/users/home-assets/exposter/ev1.png";
 import ev2 from "/public/users/home-assets/exposter/ev2.png";
@@ -28,6 +31,13 @@ const Activities = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const activities_info = [
+    { topic: "Our Activities" },
+    {
+      desc: "It is a long established fact that a reader will be distracted by the readable",
+    },
+  ];
 
   const activities = [
     {
@@ -201,31 +211,54 @@ const Activities = () => {
           ))}
         </Swiper>
       ) : (
-        activities.map((activity, idx) => (
-          <section key={idx} className="content-box">
-            <img
-              ref={(el) => (imgRefs.current[idx] = el)}
-              src={activity.poster}
-              alt={activity.topic}
-              onClick={() => setSelectedImg(activity.poster)}
-            />
-            <section className="text-container">
-              <section className="topic-container">
-                <h1
-                  ref={(el) => (text1Refs.current[idx] = el)}
-                  className="topic"
-                >
-                  {activity.topic}
-                </h1>
+        <article className="desktop-view">
+          <section className="text-top-container">
+            {activities_info.map((info, idx) => (
+              <section className="text-top-box" key={idx}>
+                <h1 className="topic">{info.topic}</h1>
+                <p className="desc">{info.desc}</p>
               </section>
-              <section className="desc-container">
-                <p ref={(el) => (text2Refs.current[idx] = el)} className="desc">
-                  {activity.description}
-                </p>
-              </section>
-            </section>
+            ))}
           </section>
-        ))
+
+          <section className="content-container">
+            {activities.map((activity, idx) => (
+              <section key={idx} className="content-box">
+                <img
+                  ref={(el) => (imgRefs.current[idx] = el)}
+                  src={activity.poster}
+                  alt={activity.topic}
+                  onClick={() => setSelectedImg(activity.poster)}
+                />
+                <section className="text-container">
+                  <section className="topic-container">
+                    <h1
+                      ref={(el) => (text1Refs.current[idx] = el)}
+                      className="topic"
+                    >
+                      {activity.topic}
+                    </h1>
+                  </section>
+                  <section className="desc-container">
+                    <p
+                      ref={(el) => (text2Refs.current[idx] = el)}
+                      className="desc"
+                    >
+                      {activity.description}
+                    </p>
+                  </section>
+                </section>
+              </section>
+            ))}
+          </section>
+
+          <CircularText
+            text="COMEN*ACTIVITIES"
+            onHover="speedUp"
+            spinDuration={20}
+            className="custom-class"
+          />
+        </article>
       )}
 
       {selectedImg && (

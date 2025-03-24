@@ -36,7 +36,7 @@ const TiktokEmbed = React.forwardRef(({ embedHtml }, ref) => {
 const AShowcase = () => {
   // ,,, get
   const [allShowcase, setAllShowcase] = useState([]);
-  // console.log(allShowcase);
+  console.log(allShowcase);
 
   // ,,, post & preview
 
@@ -115,69 +115,69 @@ const AShowcase = () => {
   };
 
   // ,,, post select
-  const [newsSelected, setNewsSelected] = useState([]); // ข่าวที่โหลดจาก API
-  const [newNewsSelected, setNewNewsSelected] = useState([]); // ข่าวที่ผู้ใช้เลือกใหม่
-  // console.log(newNewsSelected);
+  // const [newsSelected, setNewsSelected] = useState([]); // ข่าวที่โหลดจาก API
+  // const [newNewsSelected, setNewNewsSelected] = useState([]); // ข่าวที่ผู้ใช้เลือกใหม่
+  // // console.log(newNewsSelected);
 
-  const handleGetSelected = async () => {
-    try {
-      const res = await Axios.get(`${API_URL}/newsEventSelected`);
-      setNewsSelected(res.data);
-      setNewNewsSelected(res.data);
-    } catch (err) {
-      alert(`Internal server error: ${err}`);
-    }
-  };
+  // const handleGetSelected = async () => {
+  //   try {
+  //     const res = await Axios.get(`${API_URL}/newsEventSelected`);
+  //     setNewsSelected(res.data);
+  //     setNewNewsSelected(res.data);
+  //   } catch (err) {
+  //     alert(`Internal server error: ${err}`);
+  //   }
+  // };
 
-  const handleNewSelect = (newsSelect) => {
-    setNewNewsSelected((prev) => {
-      const isSelected = prev.some((item) => item.poster === newsSelect.poster);
+  // const handleNewSelect = (newsSelect) => {
+  //   setNewNewsSelected((prev) => {
+  //     const isSelected = prev.some((item) => item.poster === newsSelect.poster);
 
-      if (isSelected) {
-        // ถ้าเลือกซ้ำ ให้เอาออก
-        return prev.filter((item) => item.poster !== newsSelect.poster);
-      } else {
-        // ถ้าเลือกครบ 5 แล้ว แจ้งเตือน
-        if (prev.length >= 5) {
-          alert("Please select only 5 News & Event for show");
-          return prev;
-        }
-        return [...prev, newsSelect]; // เพิ่มข่าวเข้าไป
-      }
-    });
-  };
+  //     if (isSelected) {
+  //       // ถ้าเลือกซ้ำ ให้เอาออก
+  //       return prev.filter((item) => item.poster !== newsSelect.poster);
+  //     } else {
+  //       // ถ้าเลือกครบ 5 แล้ว แจ้งเตือน
+  //       if (prev.length >= 5) {
+  //         alert("Please select only 5 News & Event for show");
+  //         return prev;
+  //       }
+  //       return [...prev, newsSelect]; // เพิ่มข่าวเข้าไป
+  //     }
+  //   });
+  // };
 
-  const addNewSelected = async () => {
-    if (!Array.isArray(newNewsSelected) || newNewsSelected.length === 0) {
-      alert("No news selected to save.");
-      return;
-    }
+  // const addNewSelected = async () => {
+  //   if (!Array.isArray(newNewsSelected) || newNewsSelected.length === 0) {
+  //     alert("No news selected to save.");
+  //     return;
+  //   }
 
-    if (newNewsSelected.length !== 5) {
-      alert(`Please select 5 News & Event`);
-      return;
-    }
+  //   if (newNewsSelected.length !== 5) {
+  //     alert(`Please select 5 News & Event`);
+  //     return;
+  //   }
 
-    try {
-      // console.log("Sending data:", newNewsSelected);
+  //   try {
+  //     // console.log("Sending data:", newNewsSelected);
 
-      const res = await Axios.post(
-        `${API_URL}/newsEventSelected`,
-        newNewsSelected
-      );
-      if (res.status === 200) {
-        location.reload();
-      } else {
-        alert(`Insert Failed, try again...`);
-      }
-    } catch (err) {
-      alert(`Internal server error: ${err}`);
-    }
-  };
+  //     const res = await Axios.post(
+  //       `${API_URL}/newsEventSelected`,
+  //       newNewsSelected
+  //     );
+  //     if (res.status === 200) {
+  //       location.reload();
+  //     } else {
+  //       alert(`Insert Failed, try again...`);
+  //     }
+  //   } catch (err) {
+  //     alert(`Internal server error: ${err}`);
+  //   }
+  // };
 
   useEffect(() => {
     handleGet();
-    handleGetSelected();
+    // handleGetSelected();
   }, []);
 
   return (
@@ -187,7 +187,7 @@ const AShowcase = () => {
           Edit Showcase
           <hr className="mt-3" />
         </h1>
-        <button onClick={addNewSelected}>save select</button>
+        {/* <button onClick={addNewSelected}>save select</button> */}
 
         {allShowcase.map((sc, idx) => (
           <section key={idx} className="cards-sc">
@@ -200,6 +200,7 @@ const AShowcase = () => {
                 </button>
             </h1>
             <h1 className="sc-updated">{sc.formattedDate}</h1>
+            <TiktokEmbed embedHtml={sc.sc_link} />
           </section>
         ))}
       </section>
@@ -253,6 +254,8 @@ const AShowcase = () => {
           </section>
         </form>
       </section>
+
+
     </main>
   );
 };

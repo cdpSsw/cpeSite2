@@ -3,44 +3,122 @@
 .activities-container {
   @include var.center-content;
   width: 100%;
-  height: auto;
-  padding: 8vw;
+  height: 100vh;
+  padding: 0 10vw;
   background: var.$black;
   justify-content: space-between;
   overflow: hidden;
 
-  .content-box{
-    
-    img {
-      cursor: pointer;
-      width: 25vw;
-      height: 25vw;
-      object-fit: cover;
-      object-position: top;
-      filter: grayscale(100);
-      transition: all 0.3s ease-out;
+  .desktop-view {
+    @include var.center-content;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    .text-top-container{
+      width: 100%;
+      text-align: start;
+      margin-bottom: 4vw;
+      padding: 0 2vw;
+      // background: red;
+
+      .topic,
+      .desc{
+        margin: 0;
+        padding: 0;
+        color: var.$white;
+      }
+
+      .topic{
+        font-size: 64px;
+        margin-bottom: -8px;
+      }
+
+      .desc{
+        font-size: 16px;
+        line-height: 24px;
+        width: 320px;
+        color: #979797;
+      }
     }
 
-    .text-container{
-      color: var.$white;
-      margin-top: 32px;
-      overflow: hidden;
+    .content-container {
+      // background: darkcyan;
+      @include var.center-content;
+      width: 100%;
 
-      .topic-container,
-      .desc-container{
-        overflow: hidden;
-      }
+      .content-box {
+        @include var.center-content;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        z-index: 2;
 
-      .topic{ font-size: 3vw; }
-      .desc{ 
-        font-size: 1.5vw; 
-        color:var.$grey;
+        img {
+          cursor: pointer;
+          width: 22vw;
+          height: 22vw;
+          object-fit: cover;
+          object-position: top;
+          filter: grayscale(100);
+          transition: all 0.3s ease-out;
+          z-index: 1;
+        }
+
+        .text-container {
+          color: var.$white;
+          margin-top: 32px;
+          overflow: hidden;
+
+          .topic-container,
+          .desc-container {
+            overflow: hidden;
+          }
+
+          .topic {
+            font-size: 3vw;
+          }
+          .desc {
+            font-size: 1.5vw;
+            color: var.$grey;
+          }
+        }
       }
+    }
+
+    .circular-text {
+      // background: red;
+      position: absolute !important;
+      margin: 0 auto;
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transform-origin: 50% 50%;
+      -webkit-transform-origin: 50% 50%;
+      z-index: 0;
+      right: -50px;
+      bottom: 50px;
+    }
+
+    .circular-text span {
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      font-size: 22px;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1);
     }
   }
-  
-  .swiper{ display: none; }
 
+  .swiper {
+    display: none;
+  }
 }
 
 .overlay {
@@ -76,13 +154,15 @@
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 674px) {
-  .content-box{ display: none !important; }
-  .swiper{ 
-    display: flex !important; 
-    
-    .swiper-slide{
-      img{
+@media screen and (max-width: 848px) {
+  .content-box {
+    display: none !important;
+  }
+  .swiper {
+    display: flex !important;
+
+    .swiper-slide {
+      img {
         width: 320px !important;
         height: 320px !important;
         object-fit: cover;
@@ -93,36 +173,36 @@
         transform: none !important;
       }
 
-      .text-container{
+      .text-container {
         color: var.$white;
         margin-top: 32px;
         margin-bottom: 16px;
         overflow: hidden;
         opacity: 1 !important;
-        
+
         .topic-container,
-        .desc-container{
+        .desc-container {
           overflow: hidden;
         }
-  
-        .topic{ font-size: 32px; }
-        .desc{ 
-          font-size: 24px; 
-          color:var.$grey;
+
+        .topic {
+          font-size: 32px;
+        }
+        .desc {
+          font-size: 24px;
+          color: var.$grey;
         }
       }
     }
 
-    .swiper-pagination-bullet{
+    .swiper-pagination-bullet {
       background: var.$blue;
-      transition: all .3s ease-out;
+      transition: all 0.3s ease-out;
     }
 
-    .swiper-pagination-bullet-active{
+    .swiper-pagination-bullet-active {
       width: 30px;
-      background: linear-gradient(
-        90deg, var.$blue, var.$purple,
-      );
+      background: linear-gradient(90deg, var.$blue, var.$purple);
       border-radius: 3px;
     }
   }

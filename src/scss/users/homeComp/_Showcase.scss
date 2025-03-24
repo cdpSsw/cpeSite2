@@ -1,0 +1,75 @@
+@use "../../var.scss";
+
+.showcase-container {
+  height: 100vh;
+  background: var.$black;
+  overflow: hidden;
+  padding: 3vw 8vw;
+  color: var.$white;
+
+  .left-side {
+    height: 100vh;
+    padding: 8vw 0 8vw 8vw;
+
+    .desc,
+    .member {
+      color: #979797;
+      width: 80%;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    hr {
+      width: 30%;
+    }
+    .more-link {
+      position: relative;
+      text-decoration: none;
+      color: var.$white;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 0%;
+        height: 1px;
+        bottom: 0;
+        transition: all 0.3s ease-out;
+        background: red;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+    }
+  }
+
+  .right-side {
+    @include var.center-content;
+    height: 100vh;
+    // background: darksalmon;
+
+    .swiper {
+      width: 320px;
+      overflow: hidden;
+      //   background: darkblue;
+      
+      .clip-box {
+        // background: darkcyan;
+        width: 320px !important;
+        height: 640px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .showcase-container {
+     height: auto;
+
+    .left-side{ 
+      order: 2; 
+      height: auto !important;
+      margin-bottom: 12px !important;
+    }
+  }
+}

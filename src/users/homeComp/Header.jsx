@@ -1,18 +1,92 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 import Hyperspeed from "../components/Hyperspeed";
+import star from "/public/users/home-assets/star.svg";
 
 const Header = () => {
-  const headers = [{ titleTH: '{ วิศวกรรมคอมพิวเตอร์ }', titleEN1: 'COMPUTER', titleEN2: 'ENGINEERING'}]
+  const lineRef = useRef(null);
+  const starRef = useRef(null);
+  const headers = [
+    {
+      titleTH: "{ วิศวกรรมคอมพิวเตอร์ }",
+      titleEN1: "COMPUTER",
+      titleEN2: "ENGINEERING",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable",
+    },
+  ];
+
+  useEffect(() => {
+    const lineTL = gsap.timeline();
+    lineTL.fromTo(
+      lineRef.current,
+      { strokeDasharray: 350, strokeDashoffset: 500 },
+      { strokeDashoffset: 0, duration: 0.6 }
+    );
+
+    lineTL.fromTo(
+      lineRef.current,
+      { strokeDasharray: 0 },
+      { strokeDashoffset: 500, strokeDasharray: 420, duration: 0.6 },
+      "+=3"
+    );
+
+    const starTL = gsap.timeline();
+    starTL.fromTo(
+      starRef.current,
+      { scale: 0, rotateZ: -360 },
+      { scale: 1, rotateZ: 0, duration: 3, ease: "elastic.out" }
+    );
+
+    starTL.fromTo(
+      starRef.current,
+      { scale: 1, rotate: 0 },
+      { scale: 0, rotate: 360, duration: 2, ease: "elastic.inOut" },
+      "+=1"
+    );
+  }, []);
+
   return (
     <main className="header-container">
       <article className="header-content">
-        {headers.map((title, idx) => (
-            <section className="text-container" key={idx}>
-              <h1 className="title titleTH">{title.titleTH}</h1>
-              <h1 className="title titleEN">{title.titleEN1}</h1>
-              <h1 className="title titleEN">{title.titleEN2}</h1>
+        {headers.map((header, idx) => (
+          <>
+            <section className="btn-container">
+              <button className="btn apply-to-study-btn">สมัครเรียน</button>
+              <button className="btn scholarship-btn">ทุนการศึกษา</button>
             </section>
+            <section className="text-container" key={idx}>
+              <h1 className="title title-TH">{header.titleTH}</h1>
+              <h1 className="title title-EN">
+                {header.titleEN1}
+
+                <section className="asstes-container">
+                  <svg
+                    className="assets assets-1"
+                    width="141"
+                    height="86"
+                    viewBox="0 0 141 86"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      ref={lineRef}
+                      d="M4.00095 66.863C22.484 42.958 42.4824 3.86641 83.8719 34.022C120.949 61.0357 65.9872 105.456 42.1512 64.9308C21.3468 29.5596 104.699 7.46312 140.468 4.10293"
+                      stroke="#0043C0"
+                      stroke-width="8"
+                    />
+                  </svg>
+
+                  <img ref={starRef} className="assets assets-2" src={star} />
+                </section>
+              </h1>
+              <h1 className="title title-EN">{header.titleEN2}</h1>
+              <section className="desc-container">
+                <p className="desc">{header.description}</p>
+              </section>
+            </section>
+          </>
         ))}
       </article>
 

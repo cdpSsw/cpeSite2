@@ -191,34 +191,109 @@
     font-size: 14px !important;
   }
 }
+.activity-container-scroll {
+  width: 100%;
+  height: 100vh;
+}
+
 .header-container {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 50px);
   background: #060606;
   overflow: hidden;
 }
 .header-container .header-content {
   z-index: 1;
-  margin-top: -150px;
+}
+.header-container .header-content .btn-container {
+  margin-bottom: 16px;
+}
+.header-container .header-content .btn-container .btn {
+  margin: 0 4px;
+  color: #F7F7F9;
+  background: #0043C0;
+  border: 1px solid #0043C0;
+  border-radius: 32px;
+  padding: 3px 16px;
+  font-size: 1.1vw;
+  transition: all 0.3s ease-out;
+}
+.header-container .header-content .btn-container .scholarship-btn {
+  background: none;
+  border: 1px solid #F7F7F9;
+}
+.header-container .header-content .btn-container .apply-to-study-btn:hover,
+.header-container .header-content .btn-container .scholarship-btn:hover {
+  background: #0043C0;
+  border: 1px solid #0043C0;
+  box-shadow: 0 0 6px #0043C0;
 }
 .header-container .header-content .text-container {
+  user-select: none;
   color: #F7F7F9;
 }
-.header-container .header-content .text-container .titleTH {
+.header-container .header-content .text-container .title-TH {
   font-size: 2vw;
+  font-weight: 300;
 }
-.header-container .header-content .text-container .titleEN {
+.header-container .header-content .text-container .title-EN {
   font-size: 9vw;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 7vw;
+}
+.header-container .header-content .text-container .title:nth-child(2) {
+  display: inline-flex;
+  position: relative;
+  z-index: 2 !important;
+}
+.header-container .header-content .text-container .title:nth-child(2) .assets-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header-container .header-content .text-container .title:nth-child(2) .assets-1,
+.header-container .header-content .text-container .title:nth-child(2) .assets-2 {
+  position: absolute;
+  top: 0;
+}
+.header-container .header-content .text-container .title:nth-child(2) .assets-1 {
+  width: 13vw;
+  right: -15%;
+  top: -8vw;
+  height: 15vw;
+  z-index: -1;
+}
+.header-container .header-content .text-container .title:nth-child(2) .assets-2 {
+  width: 8vw;
+  right: -25%;
+  top: -110%;
+}
+.header-container .header-content .text-container .desc-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.header-container .header-content .text-container .desc-container .desc {
+  font-size: 1.5vw;
+  font-weight: 200;
+  margin: 0;
+  width: 60%;
+  font-style: italic;
 }
 .header-container #lights {
   width: 100%;
-  height: 90vh;
+  height: calc(100vh - 50px);
   overflow: hidden;
   position: absolute;
 }
@@ -233,36 +308,111 @@
   align-items: center;
   text-align: center;
   width: 100%;
-  height: auto;
-  padding: 8vw;
+  height: 100vh;
+  padding: 0 10vw;
   background: #060606;
   justify-content: space-between;
   overflow: hidden;
 }
-.activities-container .content-box img {
+.activities-container .desktop-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+.activities-container .desktop-view .text-top-container {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 4vw;
+  padding: 0 2vw;
+}
+.activities-container .desktop-view .text-top-container .topic,
+.activities-container .desktop-view .text-top-container .desc {
+  margin: 0;
+  padding: 0;
+  color: #F7F7F9;
+}
+.activities-container .desktop-view .text-top-container .topic {
+  font-size: 64px;
+  margin-bottom: -8px;
+}
+.activities-container .desktop-view .text-top-container .desc {
+  font-size: 16px;
+  line-height: 24px;
+  width: 320px;
+  color: #979797;
+}
+.activities-container .desktop-view .content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.activities-container .desktop-view .content-container .content-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.activities-container .desktop-view .content-container .content-box img {
   cursor: pointer;
-  width: 25vw;
-  height: 25vw;
+  width: 22vw;
+  height: 22vw;
   object-fit: cover;
   object-position: top;
   filter: grayscale(100);
   transition: all 0.3s ease-out;
+  z-index: 1;
 }
-.activities-container .content-box .text-container {
+.activities-container .desktop-view .content-container .content-box .text-container {
   color: #F7F7F9;
   margin-top: 32px;
   overflow: hidden;
 }
-.activities-container .content-box .text-container .topic-container,
-.activities-container .content-box .text-container .desc-container {
+.activities-container .desktop-view .content-container .content-box .text-container .topic-container,
+.activities-container .desktop-view .content-container .content-box .text-container .desc-container {
   overflow: hidden;
 }
-.activities-container .content-box .text-container .topic {
+.activities-container .desktop-view .content-container .content-box .text-container .topic {
   font-size: 3vw;
 }
-.activities-container .content-box .text-container .desc {
+.activities-container .desktop-view .content-container .content-box .text-container .desc {
   font-size: 1.5vw;
   color: #2C2C2C;
+}
+.activities-container .desktop-view .circular-text {
+  position: absolute !important;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  z-index: 0;
+  right: -50px;
+  bottom: 50px;
+}
+.activities-container .desktop-view .circular-text span {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 22px;
+  transition: all 0.5s cubic-bezier(0, 0, 0, 1);
 }
 .activities-container .swiper {
   display: none;
@@ -299,7 +449,7 @@
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 674px) {
+@media screen and (max-width: 848px) {
   .content-box {
     display: none !important;
   }
@@ -349,7 +499,7 @@
   color: #F7F7F9;
   background: #060606;
   padding: 3vw 8vw;
-  height: auto;
+  height: 100vh;
   width: 100%;
 }
 .highlight-container .highlight-box {
@@ -838,6 +988,70 @@
   color: #D2D2D2;
 }
 
+.showcase-container {
+  height: 100vh;
+  background: #060606;
+  overflow: hidden;
+  padding: 3vw 8vw;
+  color: #F7F7F9;
+}
+.showcase-container .left-side {
+  height: 100vh;
+  padding: 8vw 0 8vw 8vw;
+}
+.showcase-container .left-side .desc,
+.showcase-container .left-side .member {
+  color: #979797;
+  width: 80%;
+  font-size: 24px;
+  font-weight: 400;
+}
+.showcase-container .left-side hr {
+  width: 30%;
+}
+.showcase-container .left-side .more-link {
+  position: relative;
+  text-decoration: none;
+  color: #F7F7F9;
+}
+.showcase-container .left-side .more-link::before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 1px;
+  bottom: 0;
+  transition: all 0.3s ease-out;
+  background: red;
+}
+.showcase-container .left-side .more-link:hover::before {
+  width: 100%;
+}
+.showcase-container .right-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
+.showcase-container .right-side .swiper {
+  width: 320px;
+  overflow: hidden;
+}
+.showcase-container .right-side .swiper .clip-box {
+  width: 320px !important;
+  height: 640px !important;
+}
+
+@media screen and (max-width: 767px) {
+  .showcase-container {
+    height: auto;
+  }
+  .showcase-container .left-side {
+    order: 2;
+    height: auto !important;
+    margin-bottom: 12px !important;
+  }
+}
 .contact-container {
   width: 100%;
   height: 100vh;
