@@ -58,7 +58,7 @@ const Showcase = () => {
       </article>
 
       <article className="content-container row m-0">
-        <section className="content-left-side col-lg-6">
+        <section className="content-left-side">
           <Swiper
           grabCursor={true}
           centeredSlides={true}
@@ -81,7 +81,7 @@ const Showcase = () => {
             ))}
           </Swiper>
         </section>
-        <section className="content-right-side col-lg-6">
+        {/* <section className="content-right-side col-lg-6">
           <div className="content-box-1">
             {showcases_details.map((detail, idx) => (
               activeIndex === idx ? (
@@ -99,7 +99,7 @@ const Showcase = () => {
                 ): null
             ))}
           </div>
-        </section>
+        </section> */}
       </article>
 
       <Particles

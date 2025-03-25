@@ -23,22 +23,22 @@
       margin-bottom: 2vw;
       padding: 0;
 
-      .text-top-left{
+      .text-top-left {
         margin: 0;
         padding: 0;
-        
+
         .topic,
         .desc {
           margin: 0;
           padding: 0;
           color: var.$white;
         }
-  
+
         .topic {
           font-size: 64px;
           margin-bottom: -8px;
         }
-  
+
         .desc {
           font-size: 16px;
           line-height: 24px;
@@ -47,30 +47,35 @@
         }
       }
 
-      .text-top-right{
+      .text-top-right {
         margin-top: 5vw;
         // background: darkblue;
 
         .btn-prev,
-        .btn-next{
+        .btn-next {
           width: 50px;
           height: 50px;
           color: var.$white;
           background: none;
           border: 1px solid var.$white;
           border-radius: 50%;
-          transition: all .4s ease-out;
+          transition: all 0.4s ease-out;
 
-          ion-icon{ font-size: 16px; margin-top: 5px; }
-        
-          &:hover{
+          ion-icon {
+            font-size: 16px;
+            margin-top: 5px;
+          }
+
+          &:hover {
             color: var.$black;
             background: var.$white;
             border: 1px solid var.$white;
           }
         }
 
-        .btn-prev{ margin-right: 8px; } 
+        .btn-prev {
+          margin-right: 8px;
+        }
       }
     }
 
@@ -152,7 +157,7 @@
             .topic-container,
             .desc-container {
               overflow: hidden;
-              
+
               .topic {
                 color: var.$normal-red;
                 margin: 0;
@@ -207,7 +212,7 @@
     }
   }
 
-  .swiper-mobile {
+  .mobile-view {
     display: none;
   }
 }
@@ -229,7 +234,7 @@
 
 .overlay-content img {
   max-height: 90vh;
-  width: auto;
+  width: 90%;
   // border-radius: 10px;
   // box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease-in-out;
@@ -244,7 +249,7 @@
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 848px) {
+@media screen and (max-width: 849px) {
   .activities-container {
     height: auto !important;
     padding: 6vw 0 !important;
@@ -253,52 +258,100 @@
       display: none !important;
     }
 
-    .swiper {
-      display: flex !important;
+    .mobile-view {
+      display: block !important;
+      position: relative;
+      width: 100% !important;
+      height: auto;
+      // background: darkblue;
 
-      .swiper-slide {
-        img {
-          width: 320px !important;
-          height: 320px !important;
-          object-fit: cover;
-          object-position: top;
-          scale: 1 !important;
-          border-radius: 16px;
-          filter: grayscale(0) !important;
-          transform: none !important;
+      .content-container {
+        // background: darkblue;
+
+        .text-top-container {
+          width: 100%;
+          margin-bottom: 3vw;
+          padding: 0;
+
+          .text-top-left {
+            @include var.center-content;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            
+            .topic,
+            .desc {
+              margin: 0;
+              padding: 0;
+              color: var.$white;
+            }
+            
+            .topic {
+              font-size:  64px;
+              margin-bottom: -8px;
+            }
+
+            .desc {
+              font-size: 16px;
+              line-height: 24px;
+              width: 320px;
+              color: #979797;
+            }
+          }
+
+          .text-top-right {
+              display: none !important;
+          }
         }
 
-        .text-container {
-          color: var.$white;
-          margin-top: 32px;
-          margin-bottom: 16px;
-          overflow: hidden;
-          opacity: 1 !important;
+        .swiper-mobile {
+          width: 100vw !important;
 
-          .topic-container,
-          .desc-container {
-            overflow: hidden;
+          .swiper-slide {
+            img {
+              width: 320px !important;
+              height: 320px !important;
+              object-fit: cover;
+              object-position: top;
+              scale: 1 !important;
+              border-radius: 16px;
+              filter: grayscale(0) !important;
+              transform: none !important;
+            }
+
+            .text-container {
+              color: var.$white;
+              margin-top: 32px;
+              margin-bottom: 16px;
+              overflow: hidden;
+              opacity: 1 !important;
+
+              .topic-container,
+              .desc-container {
+                overflow: hidden;
+              }
+
+              .topic {
+                font-size: 32px;
+              }
+              .desc {
+                font-size: 24px;
+                color: var.$grey;
+              }
+            }
           }
 
-          .topic {
-            font-size: 32px;
+          .swiper-pagination-bullet {
+            background: var.$blue;
+            transition: all 0.3s ease-out;
           }
-          .desc {
-            font-size: 24px;
-            color: var.$grey;
+
+          .swiper-pagination-bullet-active {
+            width: 30px;
+            background: linear-gradient(90deg, var.$blue, var.$purple);
+            border-radius: 3px;
           }
         }
-      }
-
-      .swiper-pagination-bullet {
-        background: var.$blue;
-        transition: all 0.3s ease-out;
-      }
-
-      .swiper-pagination-bullet-active {
-        width: 30px;
-        background: linear-gradient(90deg, var.$blue, var.$purple);
-        border-radius: 3px;
       }
     }
   }
@@ -306,11 +359,29 @@
 
 @media screen and (max-width: 420px) {
   .activities-container {
-    .swiper {
-      .swiper-slide {
-        img {
-          width: 250px !important;
-          height: 250px !important;
+    .mobile-view {
+        .content-container{
+          .text-top-container {
+            .text-top-left {
+              .topic {
+                font-size:  48px;
+                margin-bottom: 4px;
+              }
+  
+              .desc {
+                font-size: 14px;
+              }
+            }
+  
+          }
+  
+        .swiper-mobile {
+          .swiper-slide {
+            img {
+              width: 250px !important;
+              height: 250px !important;
+            }
+          }
         }
       }
     }

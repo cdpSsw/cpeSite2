@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
+import Particles from "../components/Particles";
+
 import j from "/public/users/home-assets/person/j.png";
 import b from "/public/users/home-assets/person/b.png";
 import n from "/public/users/home-assets/person/n.png";
@@ -10,6 +12,14 @@ import n from "/public/users/home-assets/person/n.png";
 const Team = () => {
   const conRef = useRef(null);
   const imgRefs = useRef([]);
+
+  const teams_info = [
+    {
+      topic: "Our Team",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable",
+    },
+  ];
 
   const team_detail = [
     {
@@ -42,15 +52,35 @@ const Team = () => {
       location: "Building 5, Floor 8, Computer Engineering Room",
       date_time: "09:00 - 17:00 ( Mon - Fri )",
     },
-  ];
-
-  const teams_info = [
     {
-      topic: "Our Team",
-      description:
-        "It is a long established fact that a reader will be distracted by the readable",
+      img: n,
+      fname: "NIMIT",
+      lname: "TUKSAVITAYAPONG",
+      position: "Full-time teacher",
+      tel: "099-999-9999",
+      email: "exam.ple@spumail.net",
+      location: "Building 5, Floor 8, Computer Engineering Room",
+      date_time: "09:00 - 17:00 ( Mon - Fri )",
     },
   ];
+
+  // useEffect(() => {
+  //   imgRefs.current.forEach(img => {
+  //     gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: conRef.current,
+  //         start: "top top",
+  //         end: "top top",
+  //         scrub: 1,
+  //         markers: true,
+  //       }
+  //     }).fromTo(
+  //       img,
+  //       { rotateY: 100 },
+  //       { rotateY: 0 }
+  //     )
+  //   });
+  // }, [])
 
   return (
     <main ref={conRef} className="team-container">
@@ -69,7 +99,11 @@ const Team = () => {
               className="col-md-3"
             >
               <section className="content-box">
-                <img src={detail.img} alt={detail.fname} />
+                <img 
+                  ref={el => imgRefs.current[idx] = el}
+                  src={detail.img} 
+                  alt={detail.fname} 
+                />
                 <section className="text-bottom-container">
                   <h1 className="name fname">{detail.fname}</h1>
                   <h1 className="name lname">{detail.lname}</h1>
@@ -79,6 +113,17 @@ const Team = () => {
             </section>
           ))}
         </article>
+
+        <Particles
+          particleColors={["#2C2C2C", "#2C2C2C"]}
+          particleCount={300}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={false}
+          alphaParticles={false}
+          disableRotation={false}
+        />
     </main>
   );
 };

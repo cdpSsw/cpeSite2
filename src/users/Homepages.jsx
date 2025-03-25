@@ -68,7 +68,7 @@ const Homepages = () => {
 
       <Course />
       <Showcase /> 
-      {/* <Team /> */}
+      <Team />
       {/* <CareerP /> */}
       {/* <Faqs /> */}
     </main>

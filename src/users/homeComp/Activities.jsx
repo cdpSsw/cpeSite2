@@ -429,14 +429,14 @@ const Activities = () => {
       });
 
       gsap.to(text1Refs.current[idx], {
-        opacity: idx === activeIndex ? 1 : 0,
+        opacity: idx === activeIndex ? 1 : 1,
         y: idx === activeIndex ? 0 : 100,
         duration: 0.6,
         ease: "power2.inOut",
       });
 
       gsap.to(text2Refs.current[idx], {
-        opacity: idx === activeIndex ? 1 : 0,
+        opacity: idx === activeIndex ? 1 : 1,
         y: idx === activeIndex ? 0 : -100,
         duration: 0.6,
         ease: "power2.inOut",
@@ -451,42 +451,90 @@ const Activities = () => {
   return (
     <main ref={conRef} className="activities-container d-flex">
       {isMobile ? (
-        <Swiper
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={1}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
-          pagination={true}
-          modules={[Autoplay, Pagination]}
-          className="swiper-mobile"
-        >
-          {activities.map((activity, idx) => (
-            <SwiperSlide key={idx}>
-              <section className="content-swiper">
-                <img
-                  ref={(el) => (imgRefs.current[idx] = el)}
-                  src={activity.poster}
-                  alt={activity.topic}
-                  onClick={() => setSelectedImg(activity.poster)}
-                />
-                <section className="text-container">
-                  <h1
-                    ref={(el) => (text1Refs.current[idx] = el)}
-                    className="topic"
-                  >
-                    {activity.topic}
-                  </h1>
-                  <p
-                    ref={(el) => (text2Refs.current[idx] = el)}
-                    className="desc"
-                  >
-                    {activity.description}
-                  </p>
-                </section>
+        <article className="mobile-view">
+          <section className="content-container">
+            <section className="text-top-container">
+              <section className="text-top-left">
+                {activities_info.map((info, idx) => (
+                  <section className="text-top-box" key={idx}>
+                    <h1 className="topic">
+                      <SplitText
+                        text={info.topic}
+                        delay={50}
+                        animationFrom={{
+                          opacity: 0,
+                          transform: "translate3d(0,80px,0)",
+                        }}
+                        animationTo={{
+                          opacity: 1,
+                          transform: "translate3d(0,50px,0)",
+                        }}
+                        easing="easeOutCubic"
+                        threshold={0.2}
+                        rootMargin="-20px"
+                        onLetterAnimationComplete={handleAnimationComplete}
+                      />
+                    </h1>
+                    <p className="desc">{info.desc}</p>
+                  </section>
+                ))}
               </section>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+
+              <section className="text-top-right">
+                <button ref={prevRef} className="btn-prev">
+                  <ion-icon name="arrow-back-outline"></ion-icon>
+                </button>
+                <button ref={nextRef} className="btn-next">
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                </button>
+              </section>
+            </section>
+
+            <Swiper
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={1}
+              initialSlide={1}
+              autoplay={{ delay: 3500, disableOnInteraction: false }}
+              pagination={true}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              modules={[Autoplay, Pagination]}
+              className="swiper-mobile"
+            >
+              {activities.map((activity, idx) => (
+                <SwiperSlide key={idx}>
+                  <section className="content-swiper">
+                    <img
+                      ref={(el) => (imgRefs.current[idx] = el)}
+                      src={activity.poster}
+                      alt={activity.topic}
+                      onClick={() => setSelectedImg(activity.poster)}
+                    />
+                    <section className="text-container">
+                      <section className="topic-container">
+                        <h1
+                          ref={(el) => (text1Refs.current[idx] = el)}
+                          className="topic"
+                        >
+                          {activity.topic}
+                        </h1>
+                      </section>
+
+                      <section className="desc-container">
+                        <p
+                          ref={(el) => (text2Refs.current[idx] = el)}
+                          className="desc"
+                        >
+                          {activity.description}
+                        </p>
+                      </section>
+                    </section>
+                  </section>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </section>
+        </article>
       ) : (
         <article className="desktop-view">
           <section className="content-container">
