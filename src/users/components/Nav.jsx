@@ -1,49 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import emblem from "/public/emblem/emblem_white.png";
+import emblem from "/public/emblem/emblem_red_white.png";
+
+import Homepages from "../Homepages";
+import Activities from "../pages/pActivities";
+import Contact from "../pages/Contact";
 
 const Nav = () => {
+  const [ShowComp, setShowComp] = useState("homepages");
+
   const linkList = [
-    { name: "home", path: "/" },
-    { name: "activities", path: "/Activities" },
-    { name: "coop", path: "" },
-    { name: "cpeclub", path: "" },
-    { name: "contact", path: "/Contact" },
+    { name: "Home", path: "/", value: "homepages" },
+    { name: "Activities", path: "/Activities", value: "activities" },
+    { name: "Coop", path: "" },
+    { name: "CPE Club", path: "" },
+    { name: "Contact", path: "/Contact", value: "contact" },
   ];
+
   return (
     <main className="nav-container">
-      <article className="for-desktop-size">
+      {/* <article className="for-desktop-size">
         <section className="left-side">
           <section className="emblem-container">
-            <img src={emblem} alt="emblem" className="emblem" />
+            <img src={emblem} alt="Emblem" className="emblem" />
           </section>
 
           <ul className="nav-list">
             {linkList.map((link, idx) => (
               <li key={idx}>
-                <Link to={link.path} className="nav-link">
-                  {link.name}
-                </Link>
+                {link.path ? (
+                  <Link to={link.path} onClick={() => setShowComp(link.value)}>
+                    {link.name}
+                  </Link>
+                ) : (
+                  <button onClick={() => setShowComp(link.value)} disabled={!link.value}>
+                    {link.name}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
         </section>
 
         <section className="right-side btn-container">
-          <button className="btn btn-SignIn">Sign In</button>
-
+          <button className="btn btn-SignIn">
+            <Link to="/SignInUp">Sign In</Link>
+          </button>
           <button className="btn btn-SignUp">Sign Up</button>
         </section>
-      </article>
+      </article> */}
+
+      {/* <section className="content-container">
+        {ShowComp === "homepages" && <Homepages />}
+        {ShowComp === "activities" && <Activities />}
+        {ShowComp === "contact" && <Contact />}
+      </section>
 
       <article className="for-mobile-size">
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid nav">
             <section className="nav-box">
-              <a href="" className="navbar-brand">
-                <img src={emblem} alt="emblem" className="emblem" />
-              </a>
+              <Link to="/" className="navbar-brand">
+                <img src={emblem} alt="Emblem" className="emblem" />
+              </Link>
               <button
                 className="navbar-toggler icon-btn"
                 type="button"
@@ -64,23 +84,30 @@ const Nav = () => {
               <ul className="nav-list">
                 {linkList.map((link, idx) => (
                   <li key={idx} className="nav-item">
-                    <Link className="nav-link" to={link.path}>
-                      {link.name}
-                    </Link>
+                    {link.path ? (
+                      <Link className="nav-link" to={link.path}>
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <button className="nav-link" disabled={!link.value}>
+                        {link.name}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
 
               <section className="btn-container">
                 <hr />
-                <button className="btn btn-SignIn">Sign In</button>
+                <button className="btn btn-SignIn">
+                  <Link to="/SignInUp">Sign In</Link>
+                </button>
                 <button className="btn btn-SignUp">Sign Up</button>
               </section>
-
             </section>
           </div>
         </nav>
-      </article>
+      </article> */}
     </main>
   );
 };

@@ -4,7 +4,7 @@
   @include var.center-content;
   width: 100%;
   height: 100vh;
-  padding: 0 10vw;
+  margin-top: 4vw;
   background: var.$black;
   justify-content: space-between;
   overflow: hidden;
@@ -16,72 +16,163 @@
     width: 100%;
 
     .text-top-container {
+      @include var.center-content;
+      justify-content: space-between;
       width: 100%;
       text-align: start;
-      margin-bottom: 4vw;
-      padding: 0 2vw;
-      // background: red;
+      margin-bottom: 2vw;
+      padding: 0;
 
-      .topic,
-      .desc {
+      .text-top-left{
         margin: 0;
         padding: 0;
-        color: var.$white;
+        
+        .topic,
+        .desc {
+          margin: 0;
+          padding: 0;
+          color: var.$white;
+        }
+  
+        .topic {
+          font-size: 64px;
+          margin-bottom: -8px;
+        }
+  
+        .desc {
+          font-size: 16px;
+          line-height: 24px;
+          width: 320px;
+          color: #979797;
+        }
       }
 
-      .topic {
-        font-size: 64px;
-        margin-bottom: -8px;
-      }
+      .text-top-right{
+        margin-top: 5vw;
+        // background: darkblue;
 
-      .desc {
-        font-size: 16px;
-        line-height: 24px;
-        width: 320px;
-        color: #979797;
+        .btn-prev,
+        .btn-next{
+          width: 50px;
+          height: 50px;
+          color: var.$white;
+          background: none;
+          border: 1px solid var.$white;
+          border-radius: 50%;
+          transition: all .4s ease-out;
+
+          ion-icon{ font-size: 16px; margin-top: 5px; }
+        
+          &:hover{
+            color: var.$black;
+            background: var.$white;
+            border: 1px solid var.$white;
+          }
+        }
+
+        .btn-prev{ margin-right: 8px; } 
       }
     }
 
+    // .content-container {
+    //   // background: darkcyan;
+    //   @include var.center-content;
+    //   width: 100%;
+
+    //   .content-box {
+    //     @include var.center-content;
+    //     flex-direction: column;
+    //     position: relative;
+    //     width: 100%;
+    //     z-index: 2;
+
+    //     img {
+    //       cursor: pointer;
+    //       width: 22vw;
+    //       height: 22vw;
+    //       object-fit: cover;
+    //       object-position: top;
+    //       filter: grayscale(100);
+    //       transition: all 0.3s ease-out;
+    //       z-index: 1;
+    //     }
+
+    //     .text-container {
+    //       color: var.$white;
+    //       margin-top: 32px;
+    //       overflow: hidden;
+
+    //       .topic-container,
+    //       .desc-container {
+    //         overflow: hidden;
+    //       }
+
+    //       .topic {
+    //         font-size: 3vw;
+    //       }
+    //       .desc {
+    //         font-size: 1.5vw;
+    //         color: var.$grey;
+    //       }
+    //     }
+    //   }
+    // }
+
     .content-container {
-      // background: darkcyan;
       @include var.center-content;
-      width: 100%;
+      flex-direction: column;
+      height: auto;
+      // background: darkblue;
 
-      .content-box {
+      .swiper-desktop {
         @include var.center-content;
-        flex-direction: column;
-        position: relative;
-        width: 100%;
-        z-index: 2;
+        width: 70vw;
+        // height: calc(100% + 10px);
+        // background: darkblue;
 
-        img {
-          cursor: pointer;
-          width: 22vw;
-          height: 22vw;
-          object-fit: cover;
-          object-position: top;
-          filter: grayscale(100);
-          transition: all 0.3s ease-out;
-          z-index: 1;
+        .swiper-slide {
+          @include var.center-content;
+          flex-direction: column;
+          // background: darkcyan;
+
+          img {
+            width: 25vw;
+            height: 25vw;
+            object-fit: cover;
+            object-position: top;
+          }
+
+          .text-container {
+            text-align: start;
+            margin-top: 1vw;
+            padding: 1vw 0 2vw 0;
+            overflow: hidden;
+            // background: darkblue;
+
+            .topic-container,
+            .desc-container {
+              overflow: hidden;
+              
+              .topic {
+                color: var.$normal-red;
+                margin: 0;
+              }
+              .desc {
+                color: var.$white-grey;
+              }
+            }
+          }
         }
 
-        .text-container {
-          color: var.$white;
-          margin-top: 32px;
-          overflow: hidden;
+        .swiper-pagination-bullet {
+          background: red;
+          transition: all 0.3s ease-out;
+        }
 
-          .topic-container,
-          .desc-container {
-            overflow: hidden;
-          }
-
-          .topic {
-            font-size: 3vw;
-          }
-          .desc {
-            font-size: 1.5vw;
-            color: var.$grey;
-          }
+        .swiper-pagination-bullet-active {
+          width: 30px;
+          border-radius: 3px;
+          background: linear-gradient(90deg, var.$dark-red, var.$normal-red);
         }
       }
     }
@@ -91,8 +182,8 @@
       position: absolute !important;
       margin: 0 auto;
       border-radius: 50%;
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       color: #fff;
       font-weight: 700;
       text-align: center;
@@ -100,8 +191,8 @@
       transform-origin: 50% 50%;
       -webkit-transform-origin: 50% 50%;
       z-index: 0;
-      right: -50px;
-      bottom: 50px;
+      right: 28%;
+      bottom: 70px;
     }
 
     .circular-text span {
@@ -116,7 +207,7 @@
     }
   }
 
-  .swiper {
+  .swiper-mobile {
     display: none;
   }
 }
@@ -157,7 +248,7 @@
   .activities-container {
     height: auto !important;
     padding: 6vw 0 !important;
-    
+
     .content-box {
       display: none !important;
     }
@@ -214,10 +305,10 @@
 }
 
 @media screen and (max-width: 420px) {
-  .activities-container{
-    .swiper{
-      .swiper-slide{
-        img{
+  .activities-container {
+    .swiper {
+      .swiper-slide {
+        img {
           width: 250px !important;
           height: 250px !important;
         }

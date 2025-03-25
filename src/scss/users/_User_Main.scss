@@ -1,0 +1,197 @@
+@use "../var.scss";
+
+.user-main-container {
+  width: 100%;
+  height: auto;
+  background: var.$black;
+
+  .desktop-view {
+    @include var.center-content;
+    justify-content: space-between;
+    color: var.$white;
+    padding: 0 3vw;
+
+    .nav-left-side {
+      @include var.center-content;
+
+      .emblem {
+        width: 80px;
+      }
+
+      .nav-list {
+        @include var.center-content;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-link {
+          position: relative;
+          margin: 0 8px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 1px;
+            bottom: 0;
+            background: red;
+            transition: all 0.3s ease-out;
+          }
+
+          &:hover::before {
+            width: 100%;
+          }
+        }
+
+        .nav-link.active {
+          &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            background: red;
+            transition: all 0.3s ease-out;
+          }
+        }
+      }
+    }
+
+    .nav-right-side.btn-container {
+      .btn,
+      .btn-signIn:hover {
+        color: var.$white;
+        padding: 3px 24px;
+        background: var.$normal-red;
+        border: 1px solid var.$normal-red;
+        border-radius: 8px;
+        transition: all 0.3s ease-out;
+
+        &:hover {
+          box-shadow: 0 0 6px var.$normal-red;
+        }
+      }
+
+      .btn-signIn {
+        margin: 0 8px;
+        background: none;
+        border: 1px solid var.$white;
+      }
+    }
+  }
+
+  .mobile-view {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .desktop-view {
+    display: none !important;
+  }
+
+  .mobile-view {
+    display: flex !important;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+
+    display: flex !important;
+    background: var.$black;
+
+    .navbar {
+      width: 100%;
+      .nav {
+        padding: 0 3vw;
+
+        .nav-box {
+          width: 100%;
+          display: flex !important;
+          justify-content: space-between !important;
+
+          .navbar-brand > img {
+            width: 50px;
+          }
+
+          .icon-btn > ion-icon {
+            color: var.$white;
+            font-size: 32px;
+          }
+        }
+      }
+
+      .nav-side {
+        align-items: flex-start;
+        padding: 3vw 0;
+
+        .nav-list {
+          @include var.center-content;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          .nav-link {
+            color: var.$white;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 0%;
+              height: 1px;
+              bottom: 0;
+              background: red;
+              transition: all 0.3s ease-out;
+            }
+
+            &:hover::before {
+              width: 60%;
+            }
+          }
+
+          .nav-link.active {
+            &::before {
+              content: "";
+              position: absolute;
+              width: 60%;
+              height: 1px;
+              bottom: 0;
+              background: red;
+              transition: all 0.3s ease-out;
+            }
+          }
+        }
+
+        .btn-container {
+            hr{
+                width: 100%;
+                color: var.$white;
+            }
+
+          .btn,
+          .btn-signIn:hover {
+            color: var.$white;
+            padding: 3px 24px;
+            background: var.$normal-red;
+            border: 1px solid var.$normal-red;
+            border-radius: 8px;
+            transition: all 0.3s ease-out;
+
+            &:hover {
+              box-shadow: 0 0 6px var.$normal-red;
+            }
+          }
+
+          .btn-signIn {
+            margin: 0 8px;
+            background: none;
+            border: 1px solid var.$white;
+          }
+        }
+      }
+    }
+  }
+}

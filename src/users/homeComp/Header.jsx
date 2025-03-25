@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import Hyperspeed from "../components/Hyperspeed";
-import star from "/public/users/home-assets/star.svg";
+import SplitText from "../components/SplitText";
+import DecryptedText from "../components/DecryptedText";
 
 const Header = () => {
   const lineRef = useRef(null);
@@ -16,6 +17,10 @@ const Header = () => {
         "It is a long established fact that a reader will be distracted by the readable",
     },
   ];
+
+  const handleAnimationComplete = () => {
+    console.log("All letters have animated!");
+  };
 
   useEffect(() => {
     const lineTL = gsap.timeline();
@@ -59,9 +64,31 @@ const Header = () => {
             <section className="text-container" key={idx}>
               <h1 className="title title-TH">{header.titleTH}</h1>
               <h1 className="title title-EN">
-                {header.titleEN1}
+                {/* <SplitText
+                  text={header.titleEN1}
+                  className="text-2xl font-semibold text-center"
+                  delay={150}
+                  animationFrom={{
+                    opacity: 0,
+                    transform: "translate3d(0,50px,0)",
+                  }}
+                  animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+                  easing="easeOutCubic"
+                  threshold={0.2}
+                  rootMargin="-50px"
+                  onLetterAnimationComplete={handleAnimationComplete}
+                /> */}
 
-                <section className="asstes-container">
+                <DecryptedText
+                  text={header.titleEN1}
+                  animateOn="view"
+                  speed={60}
+                  maxIterations={25}
+                  characters=";?e2e9-0adpw,wd/D;,w;ppfkw"
+                  revealDirection="center"
+                />
+
+                {/* <section className="asstes-container">
                   <svg
                     className="assets assets-1"
                     width="141"
@@ -79,9 +106,18 @@ const Header = () => {
                   </svg>
 
                   <img ref={starRef} className="assets assets-2" src={star} />
-                </section>
+                </section> */}
               </h1>
-              <h1 className="title title-EN">{header.titleEN2}</h1>
+              <h1 className="title title-EN">
+                <DecryptedText
+                  text={header.titleEN2}
+                  animateOn="view"
+                  speed={60}
+                  maxIterations={25}
+                  characters=";?e2e9-0adpw,wd/D;,w;ppfkw"
+                  revealDirection="center"
+                />
+              </h1>
               <section className="desc-container">
                 <p className="desc">{header.description}</p>
               </section>
@@ -123,9 +159,9 @@ const Header = () => {
             background: 0x000000,
             shoulderLines: 0xffffff,
             brokenLines: 0xffffff,
-            leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-            rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-            sticks: 0x03b3c3,
+            leftCars: [0xb21010, 0xb21010, 0xb21010],
+            rightCars: [0xffffff, 0xb21010, 0xffffff],
+            sticks: 0xb21010,
           },
         }}
       />

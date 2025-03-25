@@ -6,6 +6,8 @@
 @use './users/components/Nav';
 @use './users/components/PagesHeader';
 
+@use './users/User_Main';
+
 // ...  home-pages
 @use './users/Homepages';
 @use './users/homeComp/Header';
@@ -18,8 +20,10 @@
 @use './users/homeComp/Showcase';
 
 // ... pages
+@use './users/pages/SignInUp';
 @use './users/pages/pActivities';
 @use './users/pages/Contact';
+@use './users/pages/Roadmap';
 
 // -----------------------------------------------------------------------------
 

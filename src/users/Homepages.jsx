@@ -14,6 +14,8 @@ import CareerP from "./homeComp/CareerP";
 import Faqs from "./homeComp/Faqs";
 import Showcase from "./homeComp/Showcase";
 
+import Roadmap from "./pages/Roadmap";
+
 // Register ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -55,17 +57,20 @@ const Homepages = () => {
 
   return (
     <main className="homp-container">
+      {/* <blockquote 
+        className="tiktok-embed" cite="https://www.tiktok.com/@impeanuts/video/7477057682168384786" data-video-id="7477057682168384786" style={{maxWidth:" 605px",minWidth: "325px"}}> <section> <a target="_blank" title="@impeanuts" href="https://www.tiktok.com/@impeanuts?refer=embed">@impeanuts</a> เด็กคอมรัน  เขียนโค้ด ❌ แก้โค้ด ✅ </section> </blockquote> */}
       <Nav />
       <Header />
 
       <Activities />
       <Highlight />
+      {/* <Roadmap /> */}
 
       <Course />
-      {/* <Showcase />  */}
-      <Team />
-      <CareerP />
-      <Faqs />
+      <Showcase /> 
+      {/* <Team /> */}
+      {/* <CareerP /> */}
+      {/* <Faqs /> */}
     </main>
   );
 };
