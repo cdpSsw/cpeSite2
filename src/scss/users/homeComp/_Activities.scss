@@ -341,15 +341,16 @@
             }
           }
 
-          .swiper-pagination-bullet {
-            background: var.$blue;
-            transition: all 0.3s ease-out;
+          .swiper-pagination-bullet{
+            background: var.$normal-red;
           }
-
-          .swiper-pagination-bullet-active {
+  
+          .swiper-pagination-bullet-active{
             width: 30px;
-            background: linear-gradient(90deg, var.$blue, var.$purple);
             border-radius: 3px;
+            background: linear-gradient(
+              90deg, var.$dark-red, var.$normal-red
+            );
           }
         }
       }

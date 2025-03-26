@@ -3,8 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
-import SplitText from "../components/SplitText";
-
 const Highlight = () => {
   const conRef = useRef(null);
   const topicRef = useRef(null);
@@ -36,7 +34,7 @@ const Highlight = () => {
         },
       })
       .fromTo(topicRef.current, { y: 100, opacity: 0 }, { y: 0, opacity: 1 })
-      .fromTo(descRef.current, { y: -100, opacity: 0 }, { y: 0, opacity: 1 });
+      // .fromTo(descRef.current, { y: -100, opacity: 0 }, { y: 0, opacity: 1 });
   }, []);
 
   const handleAnimationComplete = () => {

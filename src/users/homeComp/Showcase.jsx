@@ -4,6 +4,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 import Orb from "../components/Orb";
 import Particles from "../components/Particles";
+import SplitText from "../components/SplitText";
 
 import "swiper/scss";
 import "swiper/scss/pagination";
@@ -15,9 +16,14 @@ const Showcase = () => {
     { topic: "Our Showcase" },
     {
       description:
-        "มาม่าผลไม้สะบึมดั๊มพ์ พุดดิ้งโต๊ะจีน คอนเฟิร์มสตาร์แซ็กเรตเชอร์รี่ เวเฟอร์ สเปก เลดี้ซีรีส์โทรโข่งแมชีนเป่ายิงฉุบ ครูเสดซาดิสต์เนิร์สเซอรีแชมป์ ตาปรือทอล์คจัมโบ้ดีพาร์ทเมนต์ทาวน์เฮาส์",
+        "มาม่าผลไม้สะบึมดั๊มพ์ พุดดิ้งโต๊ะจีน คอนเฟิร์มสตาร์แซ็กเรตเชอร์รี่ เวเฟอร์ สเปก เลดี้ซีรีส์โทรโข่งแมชีนเป่า",
+    },
+    {
+      moreshow:
+        "https://www.google.com/"
     },
   ];
+
   const showcases_details = [
     {
       topic: 'ex. topic #1',
@@ -46,12 +52,33 @@ const Showcase = () => {
     };
   }, [showcases_details]);
 
+  const handleAnimationComplete = () => {
+    console.log("All letters have animated!");
+  };
+
   return (
     <main className="showcase-container">
       <article className="text-top-container">
         {showcases_info.map((info, idx) => (
           <section className="text-top" key={idx}>
-            <h1 className="topic">{info.topic}</h1>
+            <h1 className="topic">
+              <SplitText
+                text={info.topic}
+                delay={50}
+                animationFrom={{
+                  opacity: 0,
+                  transform: "translate3d(0,100px,0)",
+                }}
+                animationTo={{
+                  opacity: 1,
+                  transform: "translate3d(0, 70px, 0)",
+                }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-20px"
+                onLetterAnimationComplete={handleAnimationComplete}
+              />
+            </h1>
             <p className="desc">{info.description}</p>
           </section>
         ))}
@@ -80,26 +107,19 @@ const Showcase = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+          
+          <section className="link-container">
+            <a 
+              href={showcases_info[2]?.moreshow}
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              MORE SHOWCASE
+            </a>
+          </section>
+
+
         </section>
-        {/* <section className="content-right-side col-lg-6">
-          <div className="content-box-1">
-            {showcases_details.map((detail, idx) => (
-              activeIndex === idx ? (
-                  <section className="inner-box" key={idx}>
-                    <h1 className="topic">{detail.topic}</h1>
-                    <p className="desc">{detail.description}</p>
-                    <ol className="member-list">
-                      {detail.members.map((member, memIdx) => (
-                        <li className="member" key={memIdx}>
-                          {member}
-                        </li>
-                      ))}
-                    </ol>
-                  </section>
-                ): null
-            ))}
-          </div>
-        </section> */}
       </article>
 
       <Particles

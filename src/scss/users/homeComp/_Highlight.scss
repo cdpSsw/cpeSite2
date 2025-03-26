@@ -58,14 +58,41 @@
       }
     }
   }
+
+  .scroll-reveal {
+    margin: 20px 0;
+  }
+  
+  .scroll-reveal-text {
+    font-size: clamp(12px, 12px, 12px);
+    line-height: 1.5;
+    // font-weight: 600;
+  }
+  
+  .word {
+    display: inline-block;
+  }
 }
 
 @media screen and (max-width: 850px) {
   .highlight-container {
+    // background: darkblue;
+    align-items: flex-start;
+    padding: 0 3vw;
+
     .highlight-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .topic-container,
+      .desc-container{
+        text-align: start
+      }
+
       .desc-container {
         .desc {
-          width: 500px !important;
+          width: 100% !important;
         }
       }
     }
@@ -82,7 +109,6 @@
           font-size: 24px !important; 
         
         }
-        .desc{ width: 320px !important; }
       }
     }
   }

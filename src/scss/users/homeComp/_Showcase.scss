@@ -4,9 +4,9 @@
   @include var.center-content;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: auto;
   background: var.$black;
-  // background: red;
+  // background: darkblue;
   overflow: hidden;
 
   .text-top-container {
@@ -18,7 +18,7 @@
     }
 
     .desc {
-      width: 600px;
+      width: 350px;
       font-size: 16px;
       color: var.$white-grey;
     }
@@ -35,10 +35,7 @@
         
         .swiper-slide {
           overflow: hidden;
-          // border: 1px solid var.$white;
-          // padding: 3px;
-          // margin-left: -3px;
-          height: 590px !important;
+          height: 595px !important;
           height: auto;
           border-radius: 6px;
         }
@@ -55,18 +52,20 @@
           );
         }
       }
-    }
 
-    .content-right-side{
-      .inner-box{
-        color: var.$white;
-        text-align: start;
-        padding: 16px;
-        border: 1px solid var.$white;
-        // border-radius: 8px;
-        backdrop-filter: blur(5px);
+      .link-container{
+        margin-top: 16px;
+      
+        a{ 
+          color: var.$white; 
+          text-decoration: none;
+          transition: all .3s ease-out;
+
+          &:hover{ color: var.$normal-red; }
+        }
       }
     }
+
   }
 
   .orb-container {
