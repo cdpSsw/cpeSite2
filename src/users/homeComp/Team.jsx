@@ -12,95 +12,57 @@ import "swiper/scss/pagination";
 import SplitText from "../components/SplitText";
 import Particles from "../components/Particles";
 
-import j from "/public/users/home-assets/person/j.png";
-import b from "/public/users/home-assets/person/b.png";
-import n from "/public/users/home-assets/person/n.png";
+import Modal from '../../components/Modal'
+
+import j from "../assets/home-assets/person/j.png";
+import b from "../assets/home-assets/person/b.png";
+import n from "../assets/home-assets/person/n.png";
+import p from "../assets/home-assets/person/p.jpg";
 
 const Team = () => {
   const conRef = useRef(null);
   const imgRefs = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [select, setSelect] = useState([]);
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 850);
     };
-
-    // ตรวจสอบขนาดหน้าจอตอนโหลดครั้งแรก
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const teams_info = [
-    {
-      topic: "Our Team",
-      description:
-        "It is a long established fact that a reader will be distracted by the readable",
-    },
+    { topic: "Our Team", description: "ผู้เชี่ยวชาญที่ถ่ายทอดความรู้และแรงบันดาลใจสู่อนาคตเทคโนโลยี" },
   ];
 
   const team_detail = [
     {
       img: j,
-      fname: "CHIROT",
-      lname: "CHARITKHUAN",
-      position: "Position",
-      tel: "099-999-9999",
-      email: "exam.ple@spumail.net",
-      location: "Building 5, Floor 8, Computer Engineering Room",
-      date_time: "09:00 - 17:00 ( Mon - Fri )",
+      name: "ผู้ช่วยศาสตราจารย์ จิโรจน์ จริตควร",
+      position: "หัวหน้าสาขาวิชาวิศวกรรมคอมพิวเตอร์",
+      tel: "0 2579 1111 ต่อ 2197",
+      email: "chirot.ch@spu.ac.th",
+      education: [
+        { degree: "ปริญญาโท", field: "M.Eng. (Microelectronics)", institution: "Asian Institute of Technology, Thailand" },
+        { degree: "ปริญญาตรี", field: "วิศวกรรมศาสตรบัณฑิต (วิศวกรรมไฟฟ้า)", institution: "มหาวิทยาลัยศรีปทุม" },
+      ],
+      expertise: [
+        "Hardware. Digital & analog circuit design",
+        "IoT (Embedded system)",
+        "Robotics and Hardware Interfaces",
+      ],
+      work_experience: [
+        { position: "หัวหน้าสาขาวิศวกรรมคอมพิวเตอร์", institution: "คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยศรีปทุม", duration: "2553 – ปัจจุบัน" },
+        { position: "อาจารย์ประจำ", institution: "คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยศรีปทุม", duration: "2551 – 2552" },
+      ],
     },
-    {
-      img: b,
-      fname: "SURACHAI",
-      lname: "THONGKAEW",
-      position: "Position",
-      tel: "099-999-9999",
-      email: "exam.ple@spumail.net",
-      location: "Building 5, Floor 8, Computer Engineering Room",
-      date_time: "09:00 - 17:00 ( Mon - Fri )",
-    },
-    {
-      img: n,
-      fname: "NIMIT",
-      lname: "TUKSAVITAYAPONG",
-      position: "Position",
-      tel: "099-999-9999",
-      email: "exam.ple@spumail.net",
-      location: "Building 5, Floor 8, Computer Engineering Room",
-      date_time: "09:00 - 17:00 ( Mon - Fri )",
-    },
-    {
-      img: n,
-      fname: "NIMIT",
-      lname: "TUKSAVITAYAPONG",
-      position: "Position",
-      tel: "099-999-9999",
-      email: "exam.ple@spumail.net",
-      location: "Building 5, Floor 8, Computer Engineering Room",
-      date_time: "09:00 - 17:00 ( Mon - Fri )",
-    },
+    { img: b, name: "ดร.สุรชัย ทองแก้ว", position: "อาจารย์ประจำ", tel: "0 2579 1111 ต่อ 2212", email: "surachai.th@spu.ac.th" },
+    { img: n, name: "อาจารย์นิมิตร ทักษวิทยาพงศ์", position: "อาจารย์ประจำ", tel: "0 2579 1111 ต่อ 2212", email: "nimit.tu@spu.ac.th" },
+    { img: p, name: "อาจารย์ภูริลาภ จุฑาวัชระพล", position: "อาจารย์ประจำ", tel: "0 2579 1111 ต่อ 2212", email: "purilarp.ch@spu.ac.th" },
   ];
-
-  // useEffect(() => {
-  //   imgRefs.current.forEach(img => {
-  //     gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: conRef.current,
-  //         start: "top top",
-  //         end: "top top",
-  //         scrub: 1,
-  //         markers: true,
-  //       }
-  //     }).fromTo(
-  //       img,
-  //       { rotateY: 100 },
-  //       { rotateY: 0 }
-  //     )
-  //   });
-  // }, [])
 
   const handleAnimationComplete = () => {
     console.log("All letters have animated!");
@@ -114,14 +76,8 @@ const Team = () => {
             <SplitText
               text={info.topic}
               delay={50}
-              animationFrom={{
-                opacity: 0,
-                transform: "translate3d(0,80px,0)",
-              }}
-              animationTo={{
-                opacity: 1,
-                transform: "translate3d(0, 0, 0)",
-              }}
+              animationFrom={{ opacity: 0, transform: "translate3d(0,80px,0)" }}
+              animationTo={{ opacity: 1, transform: "translate3d(0, 0, 0)" }}
               easing="easeOutCubic"
               threshold={0.2}
               rootMargin="-20px"
@@ -138,25 +94,25 @@ const Team = () => {
             <Swiper
               grabCursor={true}
               centeredSlides={true}
-              autoplay={{
-                delay: 5500, disableOnInteraction: false
-              }}
+              autoplay={{ delay: 5500, disableOnInteraction: false }}
               initialSlide={0}
               slidesPerView={1}
               pagination={true}
-              modules={[ Autoplay, Pagination ]}
+              modules={[Autoplay, Pagination]}
               className="swiper-mobile"
             >
               {team_detail.map((detail, idx) => (
-                <SwiperSlide>
+                <SwiperSlide key={idx}>
                   <img
+                    data-bs-toggle="modal"
+                    data-bs-target={`#show-details-${idx + 1}`}
+                    onClick={() => setSelect([detail])}
                     ref={(el) => (imgRefs.current[idx] = el)}
                     src={detail.img}
-                    alt={detail.fname}
+                    alt={detail.name}
                   />
                   <section className="text-bottom-container">
-                    <h1 className="name fname">{detail.fname}</h1>
-                    <h1 className="name lname">{detail.lname}</h1>
+                    <h1 className="name">{detail.name}</h1>
                     <p className="position">{detail.position}</p>
                   </section>
                 </SwiperSlide>
@@ -166,20 +122,17 @@ const Team = () => {
         ) : (
           <article className="desktop-view">
             {team_detail.map((detail, idx) => (
-              <section
-                ref={(el) => (imgRefs.current[idx] = el)}
-                key={idx}
-                className="col-md-3"
-              >
+              <section key={idx} className="col-md-3">
                 <section className="content-box">
                   <img
-                    ref={(el) => (imgRefs.current[idx] = el)}
+                    data-bs-toggle="modal"
+                    data-bs-target={`#show-details-${idx + 1}`}
+                    onClick={() => setSelect([detail])}
                     src={detail.img}
-                    alt={detail.fname}
+                    alt={detail.name}
                   />
                   <section className="text-bottom-container">
-                    <h1 className="name fname">{detail.fname}</h1>
-                    <h1 className="name lname">{detail.lname}</h1>
+                    <h1 className="name">{detail.name}</h1>
                     <p className="position">{detail.position}</p>
                   </section>
                 </section>
@@ -199,6 +152,50 @@ const Team = () => {
         alphaParticles={false}
         disableRotation={false}
       />
+
+      {/* {team_detail.map((detail, idx) => (
+        <Modal
+          key={idx}
+          modalID={`show-details-${idx + 1}`} // Dynamic modal ID
+          modalHeaderStyle="d-none"
+          modalFooterStyle="d-none"
+          modalBodyContent={
+            <article>
+              <section className="row m-0">
+                <section className="col-md-6">
+                  <img src={detail.img} alt={detail.name} style={{ width: '100%' }} />
+                </section>
+                <section className="col-md-6 text-bottom-container">
+                  <p>{detail.position}</p>
+                  <h1>{detail.name}</h1>
+
+                  <h3>วุฒิการศึกษา</h3>
+                  {detail.education.map((edu, eduIdx) => (
+                    <section key={eduIdx}>
+                      <p>{edu.degree}</p>
+                      <p>{edu.field}</p>
+                      <p>{edu.institution}</p>
+                    </section>
+                  ))}
+                  <h4>ความเชี่ยวชาญ</h4>
+                  <ul>
+                    {detail.expertise.map((exp, expIdx) => (
+                      <li key={expIdx}>{exp}</li>
+                    ))}
+                  </ul>
+
+                  <h5>ประสบการณ์การทำงาน:</h5>
+                  {detail.work_experience.map((exp, expIdx) => (
+                    <section key={expIdx}>
+                      <p>{exp.position} - {exp.institution} ({exp.duration})</p>
+                    </section>
+                  ))}
+                </section>
+              </section>
+            </article>
+          }
+        />
+      ))} */}
     </main>
   );
 };

@@ -17,7 +17,8 @@
 @use './users/homeComp/Team';
 @use './users/homeComp/CareerP';
 @use './users/homeComp/Faqs';
-@use './users/homeComp/Showcase';
+@use './users/homeComp/hc-Showcase';
+@use './users/homeComp/hc-ShowTiktok';
 
 // ... pages
 @use './users/pages/SignInUp';
@@ -25,10 +26,13 @@
 @use './users/pages/Contact';
 @use './users/pages/Roadmap';
 
+@use './users/pages/Showcase';
+@use './users/pages/ShowTiktok';
+
 // -----------------------------------------------------------------------------
 
 // admin
-@use './admin/amain';
+@use './admin/A_Main';
 
 // ... components
 @use './admin/components/aHeader';
@@ -38,6 +42,16 @@
 @use './admin/components/modalDel';
 
 // ... pages
-@use './admin/pages/afaqs';
-@use './admin/pages/ashowcase';
-@use './admin/pages/content_act_carp';
+@use './admin/pages/A_Showcase';
+@use './admin/pages/A_ShowTiktok';
+@use './admin/pages/A_Members';
+
+// -----------------------------------------------------------------------------
+
+// student
+@use './student/Stu_Main';
+
+// ...
+@use './student/pages/Stu_Showcase';
+@use './student/pages/Stu_ShowTiktok';
+@use './student/pages/Stu_Tools';

@@ -9,9 +9,9 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/scss";
 import "swiper/scss/pagination";
 
-import construct from "/public/users/home-assets/construct.svg";
-import priority from "/public/users/home-assets/priority.svg";
-import network from "/public/users/home-assets/network.svg";
+import construct from "../assets/home-assets/construct.svg";
+import priority from "../assets/home-assets/priority.svg";
+import network from "../assets/home-assets/network.svg";
 
 const Course = () => {
   const conRef = useRef(null);

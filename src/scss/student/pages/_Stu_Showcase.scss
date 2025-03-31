@@ -1,0 +1,204 @@
+@use '../../var.scss';
+
+.stu-showcase-container{
+    padding: 20px 3vw;
+
+    .top-container{
+        padding: 1vw 3vw;
+
+        .btn-add-new{
+            color: var.$white;
+            background: var.$black;
+        }
+
+        .topic{
+            margin-top: 16px;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .btn-left-side{
+                border-radius: 8px;
+                background: #F1F1F1;
+                padding: 4px;
+
+                .btn{
+                    color: var.$dim_white;
+                    background: none;
+                    border: none;
+                    transition: all .3s ease-out;
+                }
+    
+                .btn.active{
+                    color: var.$black;
+                    background: var.$white;
+                    border-radius: 8px;
+                    padding: 3px 18px;
+                }
+            }
+        }
+    }
+
+    .not-found-container{
+        @include var.center-content;
+        // background: darkblue;
+        
+        .svg-not-found{
+            height: 60vh;
+        }
+    }
+
+    .content-container{
+        padding: 0 2vw;
+        
+        .btn-approve{
+            position: absolute;
+            margin: 8px;
+
+            .btn-content{
+                @include var.center-content;
+                
+                ion-icon{
+                    margin: 0;
+                    padding: 0;
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        .btn-approve.Approved{
+            color: var.$btn_success1;
+            background: var.$btn_success2;
+        }
+
+        .btn-approve.Waiting{
+            color: var.$btn_wating1;
+            background: var.$btn_wating2;
+        }
+
+        .content-card{
+            border: 1px solid var.$dim_white;
+            margin: 16px 0;
+            .content-img{
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                object-position: top;
+            }
+
+            .content-text{
+                color: var.$black;
+                padding: 16px 24px;
+                margin: 0;
+
+                .topic{ font-size: 24px; }
+                .desc{ 
+                    font-size: 16px; 
+                    color: var.$grey;
+                }
+            }
+
+            
+            .content-btn{
+                @include var.center-content;
+                justify-content: flex-end;
+                margin: 0 16px 16px 0;
+
+                .btn{
+                    color: var.$white;
+                    background: var.$red;
+                    border: 1px solid var.$red;
+                    margin: 0 3px;
+                    transition: all .3s ease-out;
+                }
+
+                .btn-edit{
+                    color: var.$black;
+                    background: none;
+                    border: 1px solid var.$dim_white;
+
+                    &:hover{
+                        color: var.$white;
+                        background: var.$btn_update1;
+                        border: 1px solid var.$btn_update1;
+                        box-shadow: 0 0 6px var.$btn_update1;
+                    }
+                }
+
+                .btn-delete{
+                    &:hover{
+                        box-shadow: 0 0 6px var.$red;
+                    }
+                }
+            }
+        }
+    }
+
+    .stu-form-showcase{
+        padding: 16px;
+
+        .topic{
+            text-align: center;
+        }
+        
+        .preview-image{
+            width: 100%;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+
+            .btn{
+                margin: 0 4px;
+                color: var.$black;
+                background: none;
+                border: 1px solid var.$dim_white;
+                border-radius: 32px;
+                transition: all .3s ease-out;
+            }
+
+            .btn.btn-add{
+                color: var.$btn_success1;
+                background: var.$btn_success2;
+                border: 1px solid var.$btn_success2;
+
+                &:hover{
+                    color: var.$btn_success2;
+                    background: var.$btn_success1;
+                    border: 1px solid var.$btn_success1;
+                }
+            }
+
+            .btn.btn-edit{
+                color: var.$btn_update1;
+                background: var.$btn_update2;
+                border: 1px solid var.$btn_update2;
+
+                &:hover{
+                    color: var.$btn_update2;
+                    background: var.$btn_update1;
+                    border: 1px solid var.$btn_update1;
+                }
+            }
+
+            .btn.btn-cancel{
+                &:hover{
+                    color: var.$btn_danger2;
+                    background: var.$btn_danger1;
+                    border: 1px solid var.$btn_danger1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .stu-showcase-container{
+        padding: 80px 3vw;
+    }
+}

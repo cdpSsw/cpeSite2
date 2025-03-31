@@ -18,9 +18,9 @@ import "swiper/scss/pagination";
 import "swiper/scss/navigation";
 import "swiper/scss/effect-coverflow";
 
-import ev1 from "/public/users/home-assets/exposter/ev1.png";
-import ev2 from "/public/users/home-assets/exposter/ev2.png";
-import ev3 from "/public/users/home-assets/exposter/130.png";
+import ev1 from "../../assets/images/ev1.png";
+import ev2 from "../../assets/images/ev2.png";
+import ev3 from "../../assets/images/ev3.png";
 
 const Activities = () => {
   const conRef = useRef(null);

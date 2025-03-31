@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import emblem from "/public/emblem/emblem_red_white.png";
+// import emblem from "/public/emblem/emblem_red_white.png";
 
 import Homepages from "../Homepages";
 import Activities from "../pages/pActivities";

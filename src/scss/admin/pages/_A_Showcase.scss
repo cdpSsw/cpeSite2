@@ -1,0 +1,317 @@
+@use '../../var.scss';
+
+.a-showcase-container{
+
+    .top-container{
+        padding: 1vw 3vw;
+
+        .topic{
+            margin-bottom: 32px;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .btn-left-side{
+                border-radius: 8px;
+                background: #F1F1F1;
+                padding: 4px;
+
+                .btn{
+                    color: var.$dim_white;
+                    background: none;
+                    border: none;
+                    transition: all .3s ease-out;
+                }
+    
+                .btn.active{
+                    color: var.$black;
+                    background: var.$white;
+                    border-radius: 8px;
+                    padding: 3px 18px;
+                }
+            }
+
+            .btn-right-side{
+                .btn-save-select{
+                    color: var.$white;
+                    background: var.$black;
+                }
+            }
+        }
+    }
+
+    .not-found-container{
+        @include var.center-content;
+        // background: darkblue;
+        
+        .svg-not-found{
+            height: 60vh;
+        }
+    }
+
+    .content-container{
+        padding: 0 2vw;
+
+        .btn-approve{
+            position: absolute;
+            margin: 8px;
+
+            .btn-content{
+                @include var.center-content;
+                
+                ion-icon{
+                    margin: 0;
+                    padding: 0;
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        .btn-approve.Approved{
+            color: var.$btn_success1;
+            background: var.$btn_success2;
+        }
+
+        .btn-approve.Waiting{
+            color: var.$btn_wating1;
+            background: var.$btn_wating2;
+        }
+
+        .content-card{
+            border: 1px solid var.$dim_white;
+            margin: 16px 0;
+
+            .content-img{
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                object-position: top;
+            }
+
+            .content-text{
+                color: var.$black;
+                padding: 16px 24px;
+                margin: 0;
+
+                .student-id{ 
+                    color: var.$white-grey; 
+                }
+                .topic{ font-size: 24px; }
+                .desc{ 
+                    font-size: 16px; 
+                    color: var.$grey;
+                }
+            }
+
+            
+            .content-btn{
+                @include var.center-content;
+                justify-content: flex-end;
+                margin: 0 16px 16px 0;
+
+                .btn{
+                    color: var.$white;
+                    background: var.$red;
+                    border: 1px solid var.$red;
+                    margin: 0 3px;
+                    transition: all .3s ease-out;
+                }
+
+                .btn-edit{
+                    color: var.$black;
+                    background: none;
+                    border: 1px solid var.$dim_white;
+
+                    &:hover{
+                        color: var.$white;
+                        background: var.$btn_update1;
+                        border: 1px solid var.$btn_update1;
+                        box-shadow: 0 0 6px var.$btn_update1;
+                    }
+                }
+
+                .btn-delete{
+                    &:hover{
+                        box-shadow: 0 0 6px var.$red;
+                    }
+                }
+            }
+        }
+
+        .content-card.selected{
+            background: var.$black;
+            
+            .content-text{
+                .topic{ color: var.$white}
+            }
+            
+            .content-btn{
+                .btn-edit{
+                    color: var.$white;
+                }
+            }
+        }
+    }
+
+    .modal-approve{
+        @include var.center-content;
+        flex-direction: column;
+        padding: 1vw 0;
+
+        ion-icon{
+            color: var.$btn_success1;
+            background: var.$btn_success2;
+            border: 1px solid var.$btn_success2;
+            padding: 16px;
+            font-size: 32px;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .desc > span{
+            color: var.$btn_success1;
+        }
+        
+        .btn-container{
+            .btn{
+                color: var.$btn_success1;
+                background: var.$btn_success2;
+                border: 1px solid var.$btn_success2;
+                border-radius: 32px;
+                margin: 0 3px;
+                transition: all .3s ease-out;
+            }
+
+            .btn-cancel{
+                color: var.$black;
+                background: none;
+                border: 1px solid var.$dim_white;
+
+                &:hover{
+                    color: var.$white;
+                    background: var.$black;
+                    border: 1px solid var.$black;
+                    box-shadow: 0 0 6px var.$black;
+                }
+            }
+
+            .btn-approve{
+                &:hover{
+                    color: var.$btn_success2;
+                    background: var.$btn_success1;
+                    border: 1px solid var.$btn_success1;
+                    box-shadow: 0 0 6px var.$btn_success1;
+                }
+            }
+        }
+    }
+
+    .modal-edit{
+        padding: 3vw;
+        .topic{
+            text-align: center;
+        }
+
+        .preview-container{
+            .img-preview{
+                width: 100%;
+            }
+        }
+
+        .btn-container{
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+
+            .btn{
+                color: var.$btn_update2;
+                background: var.$btn_update1;
+                border: 1px solid var.$btn_update1;
+                border-radius: 32px;
+                margin: 0 3px;
+                transition: all .3s ease-out;
+            }
+
+            .btn-cancel{
+                color: var.$black;
+                background: none;
+                border: 1px solid var.$dim_white;
+
+                &:hover{
+                    color: var.$white;
+                    background: var.$black;
+                    border: 1px solid var.$black;
+                    box-shadow: 0 0 6px var.$black;
+                }
+            }
+
+            .btn-update{
+                &:hover{
+                    box-shadow: 0 0 6px var.$btn_update1;
+                }
+            }
+        }
+    }
+
+    .modal-save-select{
+        padding: 16px;
+        text-align: center;
+
+        .topic{ 
+            font-weight: 700;
+        }
+
+        .select-list{
+            text-align: start;
+            padding-left: 40%;
+            font-weight: 700;
+        }
+
+        .btn-container{
+
+            .btn{
+                color: var.$btn_danger1;
+                background: none;
+                border: 1px solid var.$btn_danger2;
+                border-radius: 32px;
+                margin: 0 4px;
+                transition: all .3s ease-out;
+            }
+
+            .btn-yes{
+                color: var.$btn_success1;
+                background: var.$btn_success2;
+                border: 1px solid var.$btn_success2;
+                
+                &:hover{
+                    color: var.$btn_success2;
+                    background: var.$btn_success1;
+                    border: 1px solid var.$btn_success1;
+                }
+            }
+
+            .btn-yes:disabled{
+                color: var.$dim_white;
+                background: var.$white-grey;
+                border: 1px solid var.$white-grey;
+            }
+
+            .btn-no{
+                &:hover{
+                    color: var.$btn_danger2;
+                    background: var.$btn_danger1;
+                    border: 1px solid var.$btn_danger1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .a-showcase-container{
+        padding-top: 80px;
+    }
+}

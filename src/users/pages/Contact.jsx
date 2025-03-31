@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Nav from "../components/Nav";
 import PagesHeader from "../components/PagesHeader";
 
 const Contact = () => {
@@ -23,7 +22,6 @@ const Contact = () => {
 
   return (
     <main className="contact-container">
-      <Nav />
       <PagesHeader
         main_title={contacts[0].title}
         sub_title={contacts[0].title}

@@ -1,21 +1,121 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
+import Cookies from "js-cookie";
 
+import Modal from "../components/Modal";
 import emblem from "../public/emblem/emblem_red_white.png";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 import Homepages from "./Homepages";
-import Activities from "./homeComp/Activities";
-import Contact from "./pages/Contact";
+import Showcase from "./pages/showcase";
+import ShowTiktok from "./pages/showTiktok";
 
 const User_Main = () => {
+  useEffect(() => {
+    document.title = "Homepage | Comen - SPU";
+  }, []);
+
+  const navigate = useNavigate();
   const [activeComp, setActiveComp] = useState("home");
   const navList = [
     { name: "home" },
-    { name: "activities" },
-    { name: "coop" },
-    { name: "comen/club" },
-    { name: "contact" },
+    { name: "showcase (files)" },
+    { name: "showcase (tiktok)" },
+    // { name: "coop" },
+    // { name: "comen/club" },
+    // { name: "contact" },
   ];
+
+  // sign in - set up
+  const [enterstudentID, setEnterStudentID] = useState();
+  const [enterPass, setEnterPass] = useState("");
+
+  // sign up - set up
+  const [studentID, setStudentID] = useState();
+  const [role, setRole] = useState("student");
+  const [fname, setFname] = useState();
+  const [lname, setLname] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    try {
+      const emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+      const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      
+      if (!emailPattern.test(email)) {
+        alert("กรุณาใส่อีเมลที่ถูกต้อง");
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        alert("รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร, ตัวพิมพ์เล็ก-ใหญ่, ตัวเลข และอักขระพิเศษ");
+        return;
+      }
+
+      const res = await Axios.post(`${API_URL}/signUp`, {
+        studentID,
+        role,
+        fname,
+        lname,
+        email,
+        password,
+      });
+
+      if (res.status === 200) {
+        alert(`Waiting for approval.`);
+        location.reload();
+      } else {
+        alert(`Sign Up failed, try again later...`);
+      }
+    } catch (err) {
+      alert(`Internal server error: ${err}`);
+    }
+  };
+
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await Axios.post(
+        `${API_URL}/signIn`,
+        {
+          studentID: enterstudentID,
+          password: enterPass,
+        },
+        { withCredentials: true }
+      );
+
+      if (res.status === 200) {
+        alert("Login Successful");
+
+        // ใช้ Token จาก Response (ถ้าจำเป็น)
+        const token = res.data.token;
+        if (token) {
+          Cookies.set("token", token, { expires: 1, secure: true });
+        }
+
+        // ปิด Modal
+        const modal = document.getElementById("signIn-modal");
+        const modalInstance = bootstrap.Modal.getInstance(modal);
+        modalInstance.hide();
+
+        // Redirect ตาม role
+        if (res.data.role === "student") {
+          navigate("/Stu_Dashboard", { state: { student_id: enterstudentID } });
+          
+        } else if (res.data.role === "admin") {
+          window.location.href = "#/Admin_Dashboard";
+        }
+      } else {
+        alert("Login Failed");
+      }
+    } catch (err) {
+      alert(`Internal server error: ${err.response?.data || err.message}`);
+    }
+  };
 
   return (
     <main className="user-main-container">
@@ -40,8 +140,20 @@ const User_Main = () => {
         </section>
 
         <section className="nav-right-side btn-container">
-          <button className="btn btn-signIn">Sign In</button>
-          <button className="btn btn-signUp">Sign Up</button>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#signIn-modal"
+            className="btn btn-signIn"
+          >
+            Sign In
+          </button>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#signUp-modal"
+            className="btn btn-signUp"
+          >
+            Sign Up
+          </button>
         </section>
       </article>
 
@@ -61,7 +173,7 @@ const User_Main = () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <ion-icon name="menu-sharp"></ion-icon>
+                <i className="bi bi-list"></i>
               </button>
             </section>
 
@@ -87,8 +199,20 @@ const User_Main = () => {
 
               <section className="btn-container">
                 <hr />
-                <button className="btn btn-signIn">Sign In</button>
-                <button className="btn btn-signUp">Sign Up</button>
+                <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#signIn-modal"
+                  className="btn btn-signIn"
+                >
+                  Sign In
+                </button>
+                <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#signUp-modal"
+                  className="btn btn-signUp"
+                >
+                  Sign Up
+                </button>
               </section>
             </section>
           </div>
@@ -97,9 +221,193 @@ const User_Main = () => {
 
       <article className="comp-container">
         {activeComp === "home" && <Homepages />}
-        {activeComp === "activities" && <Activities />}
-        {activeComp === "contact" && <Contact />}
+        {activeComp === "showcase (files)" && <Showcase />}
+        {activeComp === "showcase (tiktok)" && <ShowTiktok />}
       </article>
+
+      {/* Sing In - Modal */}
+      <Modal
+        modalID="signIn-modal"
+        modalHeaderStyle="d-none"
+        modalFooterStyle="d-none"
+        modalBodyContent={
+          <>
+            <form className="form form-signIn">
+              <section className="text-top-container">
+                <h1 className="topic">Sign In</h1>
+                <p className="desc">
+                  Don't have an account ?
+                  <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#signUp-modal"
+                    className="btn btn-signUp"
+                    type="button"
+                  >
+                    Sign Up
+                  </button>
+                </p>
+              </section>
+
+              {/* Student studentID */}
+              <div className="input-box">
+                <input
+                  type="text"
+                  placeholder="Student ID"
+                  className="form-control mb-3"
+                  onChange={(e) => setEnterStudentID(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="input-box">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="form-control mb-3"
+                  onChange={(e) => setEnterPass(e.target.value)}
+                  required
+                />
+              </div>
+
+              <section className="btn-container">
+                <button
+                  type="button" // Add type="button" to prevent form submission
+                  className="btn btn-signIn"
+                  onClick={handleSignIn}
+                  disabled={!enterstudentID?.trim() || !enterPass?.trim()}
+                >
+                  Sign In
+                </button>
+
+                <div className="text-bottom-container">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>
+                    Forgot Password ? <span>Contact the administrator</span>
+                  </p>
+                </div>
+              </section>
+            </form>
+          </>
+        }
+      />
+
+      {/* Sing Up - Modal */}
+      <Modal
+        modalID="signUp-modal"
+        modalHeaderStyle="d-none"
+        modalFooterStyle="d-none"
+        modalBodyContent={
+          <>
+            <form className="form form-signUp">
+              <section className="text-top-container">
+                <h1 className="topic">Sign Up</h1>
+                <p className="desc">
+                  Already have an account ?
+                  <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#signIn-modal"
+                    className="btn btn-signIn"
+                    type="button"
+                  >
+                    Sign In
+                  </button>
+                </p>
+              </section>
+
+              {/* Student studentID or studentID & Role */}
+              <section className="studentID-n-Role row">
+                <div className="input-box col-md-7">
+                  <input
+                    type="text"
+                    placeholder="Student ID"
+                    className="form-control mb-3"
+                    onChange={(e) => setStudentID(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="input-box col-md-5">
+                  <select
+                    name="role"
+                    onChange={(e) => setRole(e.target.value)}
+                    className="form-select mb-3"
+                  >
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+              </section>
+
+              {/* fname & lname */}
+              <section className="studentID-n-Role row">
+                <div className="input-box col-md-7">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    className="form-control mb-3"
+                    onChange={(e) => setFname(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="input-box col-md-5">
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    className="form-control mb-3"
+                    onChange={(e) => setLname(e.target.value)}
+                    required
+                  />
+                </div>
+              </section>
+
+              {/* Email */}
+              <div className="input-box">
+                <input
+                  type="email"
+                  placeholder="example@mail.com"
+                  className="form-control mb-3"
+                  onChange={(e) => setEmail(e.target.value)}
+                  pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                  title="กรุณาใส่อีเมลที่ถูกต้อง เช่น example@mail.com"
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="input-box">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="form-control mb-3"
+                  onChange={(e) => setPassword(e.target.value)}
+                  pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  title="รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร, ประกอบด้วยตัวพิมพ์เล็ก, ตัวพิมพ์ใหญ่, ตัวเลข และอักขระพิเศษ"
+                  required
+                />
+              </div>
+
+              <section className="btn-container">
+                <button 
+                  className="btn btn-signUp" 
+                  onClick={handleSignUp}
+                  disabled={!studentID?.trim() || !fname?.trim() || !lname?.trim() || !email?.trim() || !password?.trim()}
+                >
+                  Sign Up
+                </button>
+
+                {/* <div className="text-bottom-container">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>
+                    Forgot Password ? <span>Contact the administrator</span>
+                  </p>
+                </div> */}
+              </section>
+            </form>
+          </>
+        }
+      />
     </main>
   );
 };

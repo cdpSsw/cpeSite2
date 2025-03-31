@@ -1,0 +1,174 @@
+@use '../var.scss';
+
+.stu-main-container{
+    .desktop-view{
+        @include var.center-content;
+        justify-content: space-between;
+        padding: 0 3vw;
+
+        .nav-left-side{
+          display: flex;
+
+          .top-container{
+            display: flex;
+            align-items: center;
+            padding: 0;
+
+              .emblem{
+                  height: 50px;
+              }
+              .user-name{
+                font-size: 16px;
+                margin-left: 16px;
+                padding-top: 8px;
+              }
+          }
+        }
+        
+        .nav-right-side{
+          display: flex;
+
+          .nav-list{
+              @include var.center-content;
+              margin: 0 8px;
+              
+              .dropdown-menu{
+                  cursor: pointer;
+                  position: relative;
+                  display: inline-block;
+                  padding: 0;
+              
+                  .btn-showcase{
+                      width: 100%;
+                      text-align: start;
+                      border: none;
+                      
+                      &:focus{
+                          color: var.$white;
+                          background: var.$black;
+                      }
+                  }
+
+                  .drop-child{
+                      position: absolute; 
+                      padding: 0;
+                      width: 100%;
+                      background: var.$white;
+                      border: 1px solid var.$dim_white;
+
+                      .nav-link{
+                        padding: 8px 0 8px 14px;
+                          width: 100%;
+                          margin: 0;
+                    }
+                  }
+              }
+
+              .nav-link{
+                  cursor: pointer;
+                  margin: 0 16px;
+                  transition: all .3s ease-out;
+
+                  &:hover{
+                  color: var.$white;
+                  background: var.$black;
+                  }
+              }
+
+              .btn-showcase.active,
+              .nav-link.active{
+                  color: var.$white;
+                  background: var.$black;
+              }
+          }
+
+          .btn-container{
+              .btn-signOut{
+                  // border: 1px solid var.$dim_white;
+                  transition: all .3s ease-out;
+
+                  &:hover{
+                      color: var.$white;
+                      background: var.$black;
+                  }
+              }
+          }
+        }
+    }
+
+    .mobile-view{ display: none; }
+    hr{ margin: 0 3vw;}
+
+}
+
+@media screen and (max-width: 850px){
+    .stu-main-container{ 
+        .desktop-view{ display: none !important; }
+
+        .mobile-view{
+            display: flex !important;
+
+            .navbar{
+                background: var.$white !important;
+                border: 1px solid var.$dim_white;
+                padding: 0;
+                margin: 0;
+
+                .nav-container{
+                    .navbar-brand{
+                        .emblem{
+                            height: 50px;
+                        }
+                    }
+
+                    .navbar-toggler:focus{
+                        box-shadow: none;
+                    }
+
+                    .collapse{
+                        .navbar-nav{
+                            .nav-item:not(.nav-item.dropdown){
+                                cursor: pointer;
+                                margin-bottom: 16px;
+                                transition: all .3s ease-out;
+
+                                &:hover{
+                                    color: var.$white;
+                                    background: var.$black;
+                                    padding-left: 16px;
+                                }
+                            }
+
+                            .nav-item.dropdown{
+                                // padding-left: 16px;
+                                .dropdown-menu{
+                                    .dropdown-item{
+                                        transition: all .3s ease-out;
+                                        
+                                        &:hover{
+                                            color: var.$white;
+                                            background: var.$black;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        .btn-container{
+                            margin: 16px 0;
+                            .btn-signOut{
+                                border: 1px solid var.$dim_white;
+                                transition: all .3s ease-out;
+                
+                                &:hover{
+                                    color: var.$white;
+                                    background: var.$black;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

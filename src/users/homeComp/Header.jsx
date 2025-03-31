@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import Hyperspeed from "../components/Hyperspeed";
-import SplitText from "../components/SplitText";
 import DecryptedText from "../components/DecryptedText";
 
 const Header = () => {
@@ -10,11 +9,11 @@ const Header = () => {
   const starRef = useRef(null);
   const headers = [
     {
-      titleTH: "{ วิศวกรรมคอมพิวเตอร์ }",
+      titleTH: "วิศวกรรมคอมพิวเตอร์",
       titleEN1: "COMPUTER",
       titleEN2: "ENGINEERING",
       description:
-        "It is a long established fact that a reader will be distracted by the readable",
+        "สร้างอนาคตด้วยเทคโนโลยีอัจฉริยะและ IoT มุ่งเน้นการเรียนรู้และพัฒนา Internet of Things (IoT), ระบบสมองกลฝังตัว และเครือข่ายอัจฉริยะ",
     },
   ];
 
@@ -23,61 +22,66 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const lineTL = gsap.timeline();
-    lineTL.fromTo(
-      lineRef.current,
-      { strokeDasharray: 350, strokeDashoffset: 500 },
-      { strokeDashoffset: 0, duration: 0.6 }
-    );
-
-    lineTL.fromTo(
-      lineRef.current,
-      { strokeDasharray: 0 },
-      { strokeDashoffset: 500, strokeDasharray: 420, duration: 0.6 },
-      "+=3"
-    );
-
-    const starTL = gsap.timeline();
-    starTL.fromTo(
-      starRef.current,
-      { scale: 0, rotateZ: -360 },
-      { scale: 1, rotateZ: 0, duration: 3, ease: "elastic.out" }
-    );
-
-    starTL.fromTo(
-      starRef.current,
-      { scale: 1, rotate: 0 },
-      { scale: 0, rotate: 360, duration: 2, ease: "elastic.inOut" },
-      "+=1"
-    );
-  }, []);
+    if (lineRef.current && starRef.current) {
+      const lineTL = gsap.timeline();
+      lineTL.fromTo(
+        lineRef.current,
+        { strokeDasharray: 350, strokeDashoffset: 500 },
+        { strokeDashoffset: 0, duration: 0.6 }
+      );
+  
+      lineTL.fromTo(
+        lineRef.current,
+        { strokeDasharray: 0 },
+        { strokeDashoffset: 500, strokeDasharray: 420, duration: 0.6 },
+        "+=3"
+      );
+  
+      const starTL = gsap.timeline();
+      starTL.fromTo(
+        starRef.current,
+        { scale: 0, rotateZ: -360 },
+        { scale: 1, rotateZ: 0, duration: 3, ease: "elastic.out" }
+      );
+  
+      starTL.fromTo(
+        starRef.current,
+        { scale: 1, rotate: 0 },
+        { scale: 0, rotate: 360, duration: 2, ease: "elastic.inOut" },
+        "+=1"
+      );
+    }
+  }, []); // The empty dependency array ensures the effect runs only once
+  
 
   return (
     <main className="header-container">
       <article className="header-content">
         {headers.map((header, idx) => (
-          <>
+          <section key={idx}>
             <section className="btn-container">
-              <button className="btn apply-to-study-btn">สมัครเรียน</button>
-              <button className="btn scholarship-btn">ทุนการศึกษา</button>
+              <button className="btn apply-to-study-btn">
+                <a 
+                  href="https://www.spu.ac.th/register.landing/" 
+                  target="_blank" 
+                  className="text-decoration-none text-white"
+                >
+                  สมัครเรียน
+                </a>
+              </button>
+              <button className="btn scholarship-btn">
+                <a 
+                  href="https://www.spu.ac.th/scholarship2568/" 
+                  target="_blank" 
+                  className="text-decoration-none text-white"
+                >
+                  ทุนการศึกษา
+                </a>
+              </button>
             </section>
             <section className="text-container" key={idx}>
               <h1 className="title title-TH">{header.titleTH}</h1>
               <h1 className="title title-EN">
-                {/* <SplitText
-                  text={header.titleEN1}
-                  className="text-2xl font-semibold text-center"
-                  delay={150}
-                  animationFrom={{
-                    opacity: 0,
-                    transform: "translate3d(0,50px,0)",
-                  }}
-                  animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-                  easing="easeOutCubic"
-                  threshold={0.2}
-                  rootMargin="-50px"
-                  onLetterAnimationComplete={handleAnimationComplete}
-                /> */}
 
                 <DecryptedText
                   text={header.titleEN1}
@@ -88,25 +92,6 @@ const Header = () => {
                   revealDirection="center"
                 />
 
-                {/* <section className="asstes-container">
-                  <svg
-                    className="assets assets-1"
-                    width="141"
-                    height="86"
-                    viewBox="0 0 141 86"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      ref={lineRef}
-                      d="M4.00095 66.863C22.484 42.958 42.4824 3.86641 83.8719 34.022C120.949 61.0357 65.9872 105.456 42.1512 64.9308C21.3468 29.5596 104.699 7.46312 140.468 4.10293"
-                      stroke="#0043C0"
-                      stroke-width="8"
-                    />
-                  </svg>
-
-                  <img ref={starRef} className="assets assets-2" src={star} />
-                </section> */}
               </h1>
               <h1 className="title title-EN">
                 <DecryptedText
@@ -122,7 +107,7 @@ const Header = () => {
                 <p className="desc">{header.description}</p>
               </section>
             </section>
-          </>
+          </section>
         ))}
       </article>
 

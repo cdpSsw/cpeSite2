@@ -1,0 +1,29 @@
+@use '../../var.scss';
+
+.stu-tools-container{
+    width: 100%;
+    height: auto;
+
+    .content-container{
+        .tool-card{
+            .swiper{
+                // background: red;
+                // width: 100%;
+                // aspect-ratio: 1 / 1;
+
+                .swiper-slide{
+                    // width: 100%;
+                    // aspect-ratio: 1 / 1;
+                    // background: darkblue;
+
+                    .tool-img{
+                        width: 100%;
+                        aspect-ratio: 1 / 1;
+                        object-fit: cover;
+                        object-position: top;
+                    }
+                }
+            }
+        }
+    }
+}
