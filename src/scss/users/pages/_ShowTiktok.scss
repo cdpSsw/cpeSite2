@@ -48,16 +48,17 @@
 
         .text-container {
           width: 325px !important;
+          height: 200px;
           text-align: start;
           padding: 16px;
 
           .id {
             margin: 0;
-            color: var.$dim_white;
+            color: var.$white-grey;
           }
 
           .topic{
-            font-size: 24px;
+            font-size: 18px;
           }
         }
       }

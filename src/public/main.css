@@ -1985,15 +1985,16 @@ blockquote {
 }
 .user-showtiktok-container .content-container .content-card-container .content-card .text-container {
   width: 325px !important;
+  height: 200px;
   text-align: start;
   padding: 16px;
 }
 .user-showtiktok-container .content-container .content-card-container .content-card .text-container .id {
   margin: 0;
-  color: #D2D2D2;
+  color: #979797;
 }
 .user-showtiktok-container .content-container .content-card-container .content-card .text-container .topic {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 850px) {
